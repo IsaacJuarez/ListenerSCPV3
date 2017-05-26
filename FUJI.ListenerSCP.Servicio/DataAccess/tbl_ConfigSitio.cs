@@ -17,21 +17,27 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
         public tbl_ConfigSitio()
         {
             this.tbl_CAT_Usuarios = new HashSet<tbl_CAT_Usuarios>();
+            this.tbl_DET_ServicioSitio = new HashSet<tbl_DET_ServicioSitio>();
+            this.tbl_MST_Estudio = new HashSet<tbl_MST_Estudio>();
         }
     
         public int id_Sitio { get; set; }
         public string vchClaveSitio { get; set; }
-        public string vchNombreSitio { get; set; }
+        public string vchnombreSitio { get; set; }
         public string vchIPCliente { get; set; }
         public string vchMaskCliente { get; set; }
         public Nullable<int> intPuertoCliente { get; set; }
-        public string vchIPServidor { get; set; }
-        public Nullable<int> intPuertoServer { get; set; }
-        public Nullable<System.DateTime> datFechaSistema { get; set; }
-        public Nullable<int> vchUserChanges { get; set; }
         public string vchAETitle { get; set; }
+        public string vchPathLocal { get; set; }
+        public string vchIPServidor { get; set; }
+        public Nullable<int> in_tPuertoServer { get; set; }
+        public string vchAETitleServer { get; set; }
+        public Nullable<System.DateTime> datFechaSistema { get; set; }
+        public string vchUserAdmin { get; set; }
         public Nullable<bool> bitActivo { get; set; }
     
         public virtual ICollection<tbl_CAT_Usuarios> tbl_CAT_Usuarios { get; set; }
+        public virtual ICollection<tbl_DET_ServicioSitio> tbl_DET_ServicioSitio { get; set; }
+        public virtual ICollection<tbl_MST_Estudio> tbl_MST_Estudio { get; set; }
     }
 }

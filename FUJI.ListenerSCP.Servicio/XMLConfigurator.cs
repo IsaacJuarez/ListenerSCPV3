@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FUJI.ListenerSCP.Servicio.DataAccess;
+using System;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace FUJI.ListenerSCP.Servicio
@@ -11,6 +8,8 @@ namespace FUJI.ListenerSCP.Servicio
     public class XMLConfigurator
     {
         public static string path = ConfigurationManager.AppSettings["ConfigDirectory"] != null ? ConfigurationManager.AppSettings["ConfigDirectory"].ToString() : "";
+        
+
         public static clsConfiguracion getXMLfile()
         {
             clsConfiguracion _config = new clsConfiguracion();
@@ -24,6 +23,7 @@ namespace FUJI.ListenerSCP.Servicio
                 _config.vchClaveSitio = node["claveSitio"]?.InnerText;
                 _config.vchNombreSitio = node["NombreSitio"]?.InnerText;
                 _config.vchAETitle = node["AETitle"]?.InnerText;
+                _config.vchPathLocal = node["vchPathLocal"].InnerText;
                 _config.bitActivo = node["Activo"]?.InnerText == "1" ? true : false;
                 //Local
                 XmlNode nodeL = doc.DocumentElement.SelectSingleNode("/Configuraciones/sitio/hostLocal");

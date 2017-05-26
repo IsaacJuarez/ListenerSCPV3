@@ -12,19 +12,19 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_CAT_TipoUsuario
+    public partial class tbl_CAT_Modalidad
     {
-        public tbl_CAT_TipoUsuario()
+        public tbl_CAT_Modalidad()
         {
-            this.tbl_CAT_Usuarios = new HashSet<tbl_CAT_Usuarios>();
+            this.tbl_MST_Estudio = new HashSet<tbl_MST_Estudio>();
         }
     
-        public int intTipoUsuarioID { get; set; }
-        public string vchTipoUsuario { get; set; }
-        public Nullable<bool> bitEstatus { get; set; }
+        public int intModalidadID { get; set; }
+        public string vchModalidadClave { get; set; }
+        public string vchModalidadDesc { get; set; }
         public Nullable<System.DateTime> datFecha { get; set; }
-        public string vchUserAdmin { get; set; }
+        public Nullable<bool> bitActivo { get; set; }
     
-        public virtual ICollection<tbl_CAT_Usuarios> tbl_CAT_Usuarios { get; set; }
+        public virtual ICollection<tbl_MST_Estudio> tbl_MST_Estudio { get; set; }
     }
 }

@@ -5,11 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="65dc952c4ff84b33bf1e656686fbe303" Name="Diagram1">
-        <EntityTypeShape EntityType="dbConfigModel.tbl_CAT_TipoUsuario" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbConfigModel.tbl_CAT_Usuarios" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbConfigModel.tbl_ConfigSitio" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="dbConfigModel.FK_CAT_TipoUsuarios_CAT_Usuarios" ManuallyRouted="false" />
-        <AssociationConnector Association="dbConfigModel.FK_ConfigSitio_CAT_Usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_CAT_TipoUsuario" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_CAT_Usuarios" Width="1.5" PointX="5" PointY="1.375" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_ConfigSitio" Width="1.5" PointX="10.25" PointY="1.25" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_DET_ServicioSitio" Width="1.5" PointX="14" PointY="1.625" />
+        <AssociationConnector Association="dbConfigModel.FK_CAT_TipoUsuarios_CAT_Usuarios" />
+        <AssociationConnector Association="dbConfigModel.FK_ConfigSitio_CAT_Usuario" />
+        <AssociationConnector Association="dbConfigModel.FK_ConfigSitio_DET_ServicioSitio" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_DET_Estudio" Width="1.5" PointX="14.75" PointY="5" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_MST_Estudio" Width="1.5" PointX="12.5" PointY="4.75" />
+        <AssociationConnector Association="dbConfigModel.FK_ConfigSitio_MST_Estudio" />
+        <AssociationConnector Association="dbConfigModel.FK_MST_Estudio_DET_Estudio" />
+        <EntityTypeShape EntityType="dbConfigModel.tbl_CAT_Modalidad" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="dbConfigModel.FK_CAT_Modalidad_MST_Estudio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -96,6 +96,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbConfig.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\tbl_CAT_Modalidad.cs">
+      <DependentUpon>dbConfig.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\tbl_CAT_TipoUsuario.cs">
       <DependentUpon>dbConfig.tt</DependentUpon>
     </Compile>
@@ -103,6 +106,15 @@
       <DependentUpon>dbConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\tbl_ConfigSitio.cs">
+      <DependentUpon>dbConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_DET_Estudio.cs">
+      <DependentUpon>dbConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_DET_ServicioSitio.cs">
+      <DependentUpon>dbConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\tbl_MST_Estudio.cs">
       <DependentUpon>dbConfig.tt</DependentUpon>
     </Compile>
     <Compile Include="ListenerSCPService.cs">

@@ -24,6 +24,8 @@ namespace FUJI.ListenerSCP.Servicio
         public string vchNombreUsuario { get; set; }
         public string vchUsuario { get; set; }
         public string vchPassword { get; set; }
+        public string vchPathLocal { get; set; }
+
 
         public clsConfiguracion()
         {
@@ -43,6 +45,7 @@ namespace FUJI.ListenerSCP.Servicio
             vchNombreUsuario = string.Empty;
             vchUsuario = string.Empty;
             vchPassword = string.Empty;
+            vchPathLocal = string.Empty;
         }
     }
 }

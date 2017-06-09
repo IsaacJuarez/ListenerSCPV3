@@ -81,6 +81,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsConfiguracion.cs" />
+    <Compile Include="DataAccessLocal\tbl_CAT_EstatusAUX.cs">
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\tbl_CAT_ModalidadAUX.cs">
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\tbl_ConfigSitioAUX.cs">
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\tbl_DET_EstudioAUX.cs">
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\tbl_MST_EstudioAUX.cs">
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ConfigDataAccess.cs" />
     <Compile Include="DataAccess\dbConfig.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +111,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbConfig.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\NapoleonAUX.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NapoleonAUX.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\NapoleonAUX.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NapoleonAUX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLocal\NapoleonAUX.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NapoleonAUX.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\tbl_CAT_Modalidad.cs">
       <DependentUpon>dbConfig.tt</DependentUpon>
@@ -124,6 +155,7 @@
       <DependentUpon>ListenerSCPService.cs</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
+    <Compile Include="DataAccessLocal\NapoleonAUXDataAccess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -145,6 +177,13 @@
     <None Include="DataAccess\dbConfig.edmx.diagram">
       <DependentUpon>dbConfig.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="DataAccessLocal\NapoleonAUX.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NapoleonAUX.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataAccessLocal\NapoleonAUX.edmx.diagram">
+      <DependentUpon>NapoleonAUX.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +196,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbConfig.edmx</DependentUpon>
       <LastGenOutput>dbConfig.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccessLocal\NapoleonAUX.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NapoleonAUX.edmx</DependentUpon>
+      <LastGenOutput>NapoleonAUX.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccessLocal\NapoleonAUX.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NapoleonAUX.edmx</DependentUpon>
+      <LastGenOutput>NapoleonAUX.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

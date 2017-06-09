@@ -20,6 +20,7 @@ namespace FUJI.ListenerSCP.Servicio
 
                 XmlNode node = doc.DocumentElement.SelectSingleNode("/Configuraciones/sitio");
                 //Sitio
+                _config.id_Sitio = node["id_Sitio"]?.InnerText != "" ? Convert.ToInt32(node["id_Sitio"]?.InnerText.ToString()) : 0;
                 _config.vchClaveSitio = node["claveSitio"]?.InnerText;
                 _config.vchNombreSitio = node["NombreSitio"]?.InnerText;
                 _config.vchAETitle = node["AETitle"]?.InnerText;
@@ -60,6 +61,7 @@ namespace FUJI.ListenerSCP.Servicio
                 doc.Load(path + "info.xml");
                 XmlNode node = doc.DocumentElement.SelectSingleNode("/Configuraciones/sitio");
                 //Sitio
+                node["id_Sitio"].InnerText = _config.id_Sitio.ToString();
                 node["claveSitio"].InnerText = _config.vchClaveSitio;
                 node["claveSitio"].InnerText = _config.vchClaveSitio;
                 node["NombreSitio"].InnerText = _config.vchNombreSitio;

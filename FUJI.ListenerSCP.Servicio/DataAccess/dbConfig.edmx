@@ -81,6 +81,7 @@
           <Property Name="id_Sitio" Type="int" />
           <Property Name="datFechaSCP" Type="datetime" />
           <Property Name="datFechaSCU" Type="datetime" />
+          <Property Name="datFechaSync" Type="datetime" />
         </EntityType>
         <EntityType Name="tbl_MST_Estudio">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="datFecha" Type="datetime" />
           <Property Name="intNumeroArchivo" Type="int" />
           <Property Name="intTamanoTotal" Type="int" />
+          <Property Name="vchgenero" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_CAT_Modalidad_MST_Estudio">
           <End Role="tbl_CAT_Modalidad" Type="Self.tbl_CAT_Modalidad" Multiplicity="0..1" />
@@ -207,10 +209,17 @@
     <edmx:ConceptualModels>
       <Schema Namespace="dbConfigModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="dbConfigEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_CAT_Modalidad" EntityType="dbConfigModel.tbl_CAT_Modalidad" />
           <EntitySet Name="tbl_CAT_TipoUsuario" EntityType="dbConfigModel.tbl_CAT_TipoUsuario" />
           <EntitySet Name="tbl_CAT_Usuarios" EntityType="dbConfigModel.tbl_CAT_Usuarios" />
           <EntitySet Name="tbl_ConfigSitio" EntityType="dbConfigModel.tbl_ConfigSitio" />
+          <EntitySet Name="tbl_DET_Estudio" EntityType="dbConfigModel.tbl_DET_Estudio" />
           <EntitySet Name="tbl_DET_ServicioSitio" EntityType="dbConfigModel.tbl_DET_ServicioSitio" />
+          <EntitySet Name="tbl_MST_Estudio" EntityType="dbConfigModel.tbl_MST_Estudio" />
+          <AssociationSet Name="FK_CAT_Modalidad_MST_Estudio" Association="dbConfigModel.FK_CAT_Modalidad_MST_Estudio">
+            <End Role="tbl_CAT_Modalidad" EntitySet="tbl_CAT_Modalidad" />
+            <End Role="tbl_MST_Estudio" EntitySet="tbl_MST_Estudio" />
+          </AssociationSet>
           <AssociationSet Name="FK_CAT_TipoUsuarios_CAT_Usuarios" Association="dbConfigModel.FK_CAT_TipoUsuarios_CAT_Usuarios">
             <End Role="tbl_CAT_TipoUsuario" EntitySet="tbl_CAT_TipoUsuario" />
             <End Role="tbl_CAT_Usuarios" EntitySet="tbl_CAT_Usuarios" />
@@ -223,8 +232,6 @@
             <End Role="tbl_ConfigSitio" EntitySet="tbl_ConfigSitio" />
             <End Role="tbl_DET_ServicioSitio" EntitySet="tbl_DET_ServicioSitio" />
           </AssociationSet>
-          <EntitySet Name="tbl_DET_Estudio" EntityType="dbConfigModel.tbl_DET_Estudio" />
-          <EntitySet Name="tbl_MST_Estudio" EntityType="dbConfigModel.tbl_MST_Estudio" />
           <AssociationSet Name="FK_ConfigSitio_MST_Estudio" Association="dbConfigModel.FK_ConfigSitio_MST_Estudio">
             <End Role="tbl_ConfigSitio" EntitySet="tbl_ConfigSitio" />
             <End Role="tbl_MST_Estudio" EntitySet="tbl_MST_Estudio" />
@@ -233,12 +240,18 @@
             <End Role="tbl_MST_Estudio" EntitySet="tbl_MST_Estudio" />
             <End Role="tbl_DET_Estudio" EntitySet="tbl_DET_Estudio" />
           </AssociationSet>
-          <EntitySet Name="tbl_CAT_Modalidad" EntityType="dbConfigModel.tbl_CAT_Modalidad" />
-          <AssociationSet Name="FK_CAT_Modalidad_MST_Estudio" Association="dbConfigModel.FK_CAT_Modalidad_MST_Estudio">
-            <End Role="tbl_CAT_Modalidad" EntitySet="tbl_CAT_Modalidad" />
-            <End Role="tbl_MST_Estudio" EntitySet="tbl_MST_Estudio" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tbl_CAT_Modalidad">
+          <Key>
+            <PropertyRef Name="intModalidadID" />
+          </Key>
+          <Property Name="intModalidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vchModalidadClave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vchModalidadDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datFecha" Type="DateTime" Precision="3" />
+          <Property Name="bitActivo" Type="Boolean" />
+          <NavigationProperty Name="tbl_MST_Estudio" Relationship="dbConfigModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_CAT_Modalidad" ToRole="tbl_MST_Estudio" />
+        </EntityType>
         <EntityType Name="tbl_CAT_TipoUsuario">
           <Key>
             <PropertyRef Name="intTipoUsuarioID" />
@@ -290,6 +303,20 @@
           <NavigationProperty Name="tbl_DET_ServicioSitio" Relationship="dbConfigModel.FK_ConfigSitio_DET_ServicioSitio" FromRole="tbl_ConfigSitio" ToRole="tbl_DET_ServicioSitio" />
           <NavigationProperty Name="tbl_MST_Estudio" Relationship="dbConfigModel.FK_ConfigSitio_MST_Estudio" FromRole="tbl_ConfigSitio" ToRole="tbl_MST_Estudio" />
         </EntityType>
+        <EntityType Name="tbl_DET_Estudio">
+          <Key>
+            <PropertyRef Name="intDetEstudioID" />
+          </Key>
+          <Property Name="intDetEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intEstudioID" Type="Int32" />
+          <Property Name="intEstatusID" Type="Int32" />
+          <Property Name="vchNameFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="intSizeFile" Type="Int32" />
+          <Property Name="vchPathFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datFecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_MST_Estudio" Relationship="dbConfigModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_DET_Estudio" ToRole="tbl_MST_Estudio" />
+          <Property Name="vchStudyInstanceUID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="tbl_DET_ServicioSitio">
           <Key>
             <PropertyRef Name="intDetServicioID" />
@@ -299,7 +326,39 @@
           <Property Name="datFechaSCP" Type="DateTime" Precision="3" />
           <Property Name="datFechaSCU" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbl_ConfigSitio" Relationship="dbConfigModel.FK_ConfigSitio_DET_ServicioSitio" FromRole="tbl_DET_ServicioSitio" ToRole="tbl_ConfigSitio" />
+          <Property Name="datFechaSync" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tbl_MST_Estudio">
+          <Key>
+            <PropertyRef Name="intEstudioID" />
+          </Key>
+          <Property Name="intEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Sitio" Type="Int32" />
+          <Property Name="intModalidadID" Type="Int32" />
+          <Property Name="vchAccessionNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="vchPatientBirthDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PatientID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PatientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datFecha" Type="DateTime" Precision="3" />
+          <Property Name="intNumeroArchivo" Type="Int32" />
+          <Property Name="intTamanoTotal" Type="Int32" />
+          <NavigationProperty Name="tbl_CAT_Modalidad" Relationship="dbConfigModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_CAT_Modalidad" />
+          <NavigationProperty Name="tbl_ConfigSitio" Relationship="dbConfigModel.FK_ConfigSitio_MST_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_ConfigSitio" />
+          <NavigationProperty Name="tbl_DET_Estudio" Relationship="dbConfigModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_DET_Estudio" />
+          <Property Name="vchgenero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CAT_Modalidad_MST_Estudio">
+          <End Type="dbConfigModel.tbl_CAT_Modalidad" Role="tbl_CAT_Modalidad" Multiplicity="0..1" />
+          <End Type="dbConfigModel.tbl_MST_Estudio" Role="tbl_MST_Estudio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CAT_Modalidad">
+              <PropertyRef Name="intModalidadID" />
+            </Principal>
+            <Dependent Role="tbl_MST_Estudio">
+              <PropertyRef Name="intModalidadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CAT_TipoUsuarios_CAT_Usuarios">
           <End Type="dbConfigModel.tbl_CAT_TipoUsuario" Role="tbl_CAT_TipoUsuario" Multiplicity="0..1" />
           <End Type="dbConfigModel.tbl_CAT_Usuarios" Role="tbl_CAT_Usuarios" Multiplicity="*" />
@@ -336,38 +395,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tbl_DET_Estudio">
-          <Key>
-            <PropertyRef Name="intDetEstudioID" />
-          </Key>
-          <Property Name="intDetEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="intEstudioID" Type="Int32" />
-          <Property Name="intEstatusID" Type="Int32" />
-          <Property Name="vchNameFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="intSizeFile" Type="Int32" />
-          <Property Name="vchPathFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="datFecha" Type="DateTime" Precision="3" />
-          <Property Name="vchStudyInstanceUID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbl_MST_Estudio" Relationship="dbConfigModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_DET_Estudio" ToRole="tbl_MST_Estudio" />
-        </EntityType>
-        <EntityType Name="tbl_MST_Estudio">
-          <Key>
-            <PropertyRef Name="intEstudioID" />
-          </Key>
-          <Property Name="intEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Sitio" Type="Int32" />
-          <Property Name="intModalidadID" Type="Int32" />
-          <Property Name="vchAccessionNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="vchPatientBirthDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PatientID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PatientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="datFecha" Type="DateTime" Precision="3" />
-          <Property Name="intNumeroArchivo" Type="Int32" />
-          <Property Name="intTamanoTotal" Type="Int32" />
-          <NavigationProperty Name="tbl_ConfigSitio" Relationship="dbConfigModel.FK_ConfigSitio_MST_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_ConfigSitio" />
-          <NavigationProperty Name="tbl_DET_Estudio" Relationship="dbConfigModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_DET_Estudio" />
-          <NavigationProperty Name="tbl_CAT_Modalidad" Relationship="dbConfigModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_MST_Estudio" ToRole="tbl_CAT_Modalidad" />
-        </EntityType>
         <Association Name="FK_ConfigSitio_MST_Estudio">
           <End Type="dbConfigModel.tbl_ConfigSitio" Role="tbl_ConfigSitio" Multiplicity="0..1" />
           <End Type="dbConfigModel.tbl_MST_Estudio" Role="tbl_MST_Estudio" Multiplicity="*" />
@@ -392,35 +419,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tbl_CAT_Modalidad">
-          <Key>
-            <PropertyRef Name="intModalidadID" />
-          </Key>
-          <Property Name="intModalidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="vchModalidadClave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="vchModalidadDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="datFecha" Type="DateTime" Precision="3" />
-          <Property Name="bitActivo" Type="Boolean" />
-          <NavigationProperty Name="tbl_MST_Estudio" Relationship="dbConfigModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_CAT_Modalidad" ToRole="tbl_MST_Estudio" />
-        </EntityType>
-        <Association Name="FK_CAT_Modalidad_MST_Estudio">
-          <End Type="dbConfigModel.tbl_CAT_Modalidad" Role="tbl_CAT_Modalidad" Multiplicity="0..1" />
-          <End Type="dbConfigModel.tbl_MST_Estudio" Role="tbl_MST_Estudio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_CAT_Modalidad">
-              <PropertyRef Name="intModalidadID" />
-            </Principal>
-            <Dependent Role="tbl_MST_Estudio">
-              <PropertyRef Name="intModalidadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbConfigModelStoreContainer" CdmEntityContainer="dbConfigEntities">
+          <EntitySetMapping Name="tbl_CAT_Modalidad">
+            <EntityTypeMapping TypeName="dbConfigModel.tbl_CAT_Modalidad">
+              <MappingFragment StoreEntitySet="tbl_CAT_Modalidad">
+                <ScalarProperty Name="bitActivo" ColumnName="bitActivo" />
+                <ScalarProperty Name="datFecha" ColumnName="datFecha" />
+                <ScalarProperty Name="vchModalidadDesc" ColumnName="vchModalidadDesc" />
+                <ScalarProperty Name="vchModalidadClave" ColumnName="vchModalidadClave" />
+                <ScalarProperty Name="intModalidadID" ColumnName="intModalidadID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_CAT_TipoUsuario">
             <EntityTypeMapping TypeName="dbConfigModel.tbl_CAT_TipoUsuario">
               <MappingFragment StoreEntitySet="tbl_CAT_TipoUsuario">
@@ -469,16 +484,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_DET_ServicioSitio">
-            <EntityTypeMapping TypeName="dbConfigModel.tbl_DET_ServicioSitio">
-              <MappingFragment StoreEntitySet="tbl_DET_ServicioSitio">
-                <ScalarProperty Name="datFechaSCU" ColumnName="datFechaSCU" />
-                <ScalarProperty Name="datFechaSCP" ColumnName="datFechaSCP" />
-                <ScalarProperty Name="id_Sitio" ColumnName="id_Sitio" />
-                <ScalarProperty Name="intDetServicioID" ColumnName="intDetServicioID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_DET_Estudio">
             <EntityTypeMapping TypeName="dbConfigModel.tbl_DET_Estudio">
               <MappingFragment StoreEntitySet="tbl_DET_Estudio">
@@ -493,9 +498,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DET_ServicioSitio">
+            <EntityTypeMapping TypeName="dbConfigModel.tbl_DET_ServicioSitio">
+              <MappingFragment StoreEntitySet="tbl_DET_ServicioSitio">
+                <ScalarProperty Name="datFechaSync" ColumnName="datFechaSync" />
+                <ScalarProperty Name="datFechaSCU" ColumnName="datFechaSCU" />
+                <ScalarProperty Name="datFechaSCP" ColumnName="datFechaSCP" />
+                <ScalarProperty Name="id_Sitio" ColumnName="id_Sitio" />
+                <ScalarProperty Name="intDetServicioID" ColumnName="intDetServicioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_MST_Estudio">
             <EntityTypeMapping TypeName="dbConfigModel.tbl_MST_Estudio">
               <MappingFragment StoreEntitySet="tbl_MST_Estudio">
+                <ScalarProperty Name="vchgenero" ColumnName="vchgenero" />
                 <ScalarProperty Name="intTamanoTotal" ColumnName="intTamanoTotal" />
                 <ScalarProperty Name="intNumeroArchivo" ColumnName="intNumeroArchivo" />
                 <ScalarProperty Name="datFecha" ColumnName="datFecha" />
@@ -506,17 +523,6 @@
                 <ScalarProperty Name="intModalidadID" ColumnName="intModalidadID" />
                 <ScalarProperty Name="id_Sitio" ColumnName="id_Sitio" />
                 <ScalarProperty Name="intEstudioID" ColumnName="intEstudioID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_CAT_Modalidad">
-            <EntityTypeMapping TypeName="dbConfigModel.tbl_CAT_Modalidad">
-              <MappingFragment StoreEntitySet="tbl_CAT_Modalidad">
-                <ScalarProperty Name="bitActivo" ColumnName="bitActivo" />
-                <ScalarProperty Name="datFecha" ColumnName="datFecha" />
-                <ScalarProperty Name="vchModalidadDesc" ColumnName="vchModalidadDesc" />
-                <ScalarProperty Name="vchModalidadClave" ColumnName="vchModalidadClave" />
-                <ScalarProperty Name="intModalidadID" ColumnName="intModalidadID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

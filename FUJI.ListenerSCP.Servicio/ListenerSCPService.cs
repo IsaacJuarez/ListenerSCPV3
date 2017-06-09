@@ -2,6 +2,7 @@
 using Dicom.Log;
 using Dicom.Network;
 using FUJI.ListenerSCP.Servicio.DataAccess;
+using FUJI.ListenerSCP.Servicio.DataAccessLocal;
 using System;
 using System.Configuration;
 using System.IO;
@@ -26,92 +27,7 @@ namespace FUJI.ListenerSCP.Servicio
         }
 
         public static dbConfigEntities ConfigDA;
-
-        public tbl_ConfigSitio getConeccion()
-        {
-            tbl_ConfigSitio mdl = new tbl_ConfigSitio();
-            try
-            {
-                using (ConfigDA = new dbConfigEntities())
-                {
-                    if (ConfigDA.tbl_ConfigSitio.Any(item => (bool)item.bitActivo))
-                    {
-                        var query = (from item in ConfigDA.tbl_ConfigSitio
-                                     where (bool)item.bitActivo
-                                     select item);
-                        if (query != null)
-                        {
-                            if (query.Count() > 0)
-                            {
-                                mdl = query.First();
-                            }
-                        }
-                    }
-                }
-                Log.EscribeLog("Se consulta la configuración: Puerto Cliente: " + mdl.intPuertoCliente);
-            }
-            catch (Exception egc)
-            {
-                Log.EscribeLog("Existe un error al obtner las configuraciones para el Servicio SCP: " + egc);
-            }
-            return mdl;
-        }
-
-        public void setService()
-        {
-            try
-            {
-                tbl_DET_ServicioSitio mdl = new tbl_DET_ServicioSitio();
-
-                if (id_Servicio > 0)
-                {
-                    using (ConfigDA = new dbConfigEntities())
-                    {
-                        if (ConfigDA.tbl_DET_ServicioSitio.Any(x => x.id_Sitio == id_Servicio))
-                        {
-                            using (ConfigDA = new dbConfigEntities())
-                            {
-                                mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == id_Servicio);
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                        else
-                        {
-                            using (ConfigDA = new dbConfigEntities())
-                            {
-                                mdl.id_Sitio = id_Servicio;
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.tbl_DET_ServicioSitio.Add(mdl);
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (vchClaveSitio != "")
-                    {
-                        using (ConfigDA = new dbConfigEntities())
-                        {
-                            tbl_ConfigSitio mdlSitio = new tbl_ConfigSitio();
-                            if (ConfigDA.tbl_ConfigSitio.Any(x => x.vchClaveSitio == vchClaveSitio))
-                            {
-                                mdlSitio = ConfigDA.tbl_ConfigSitio.First(x => x.vchClaveSitio == vchClaveSitio);
-                                mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == mdlSitio.id_Sitio);
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception eSS)
-            {
-                Log.EscribeLog("Existe un error en setService: " + eSS.Message);
-                //throw eSS;
-            }
-        }
+        public static NAPOLEONAUXEntities NapAuxDA;
 
 
         private void cargarServicio()
@@ -128,9 +44,20 @@ namespace FUJI.ListenerSCP.Servicio
                     path = "";
                     Log.EscribeLog("Error al obtener el path desde appSettings: " + ePath.Message);
                 }
-                
-              
-                tbl_ConfigSitio mdl = new tbl_ConfigSitio();
+                string PathDestino = "";
+                try
+                {
+                    PathDestino = ConfigurationManager.AppSettings["PathDes"].ToString();
+                    //Verificar Folder
+                    if (!Directory.Exists(PathDestino))
+                        Directory.CreateDirectory(PathDestino);
+                }
+                catch (Exception ePATHDES)
+                {
+                    Log.EscribeLog("Existe un error al leer el path de destino: " + ePATHDES.Message);
+                }
+
+                DataAccess.tbl_ConfigSitio mdl = new DataAccess.tbl_ConfigSitio();
                 if (File.Exists(path + "info.xml"))
                 {
                     _conf = XMLConfigurator.getXMLfile();
@@ -139,71 +66,78 @@ namespace FUJI.ListenerSCP.Servicio
                     vchPathRep = _conf.vchPathLocal;
                     vchClaveSitio = _conf.vchClaveSitio;
                 }
-
-                mdl = getConeccion();
-
-                if (mdl != null || _conf != null)
+                Log.EscribeLog("Sitio: " + vchClaveSitio);
+                if (vchClaveSitio != "")
                 {
-                    if(!(id_Servicio >0))
+                    mdl = ConfigDataAccess.getConeccion(vchClaveSitio);
+                    if (mdl != null || _conf != null)
                     {
-                        id_Servicio = mdl.id_Sitio;
-                    }
-
-                    if(vchClaveSitio =="")
-                    {
-                        vchClaveSitio = mdl.vchClaveSitio;
-                    }
-                    if (AETitle == "")
-                    {
-                        AETitle = mdl.vchAETitle;
-                    }
-                    Log.EscribeLog("Inicio de CargarServicio SCP");
-                    // preload dictionary to prevent timeouts
-                    var dict = DicomDictionary.Default;
-                    int port = 0;
-
-                    Log.EscribeLog("Puerto: " + mdl.intPuertoCliente);
-                    Log.EscribeLog("AETitle: " + AETitle);
-                    // start DICOM server on port from command line argument or 11112
-                    try
-                    {
-                        if (_conf.intPuertoCliente > 0)
+                        if (!(id_Servicio > 0))
                         {
-                            port = _conf.intPuertoCliente;
+                            id_Servicio = mdl.id_Sitio;
                         }
-                        else
+
+                        if (vchClaveSitio == "")
                         {
-                            if (mdl.intPuertoCliente > 0)
+                            vchClaveSitio = mdl.vchClaveSitio;
+                        }
+                        if (AETitle == "")
+                        {
+                            AETitle = mdl.vchAETitle;
+                        }
+                        Log.EscribeLog("Inicio de CargarServicio SCP");
+                        // preload dictionary to prevent timeouts
+                        var dict = DicomDictionary.Default;
+                        int port = 0;
+
+                        Log.EscribeLog("Puerto: " + mdl.intPuertoCliente);
+                        Log.EscribeLog("AETitle: " + AETitle);
+                        // start DICOM server on port from command line argument or 11112
+                        try
+                        {
+                            if (_conf.intPuertoCliente > 0)
                             {
-                                port = (int)mdl.intPuertoCliente;
+                                port = _conf.intPuertoCliente;
                             }
                             else
                             {
-                                port = Convert.ToInt32(ConfigurationManager.AppSettings["Puerto"].ToString());
+                                if (mdl.intPuertoCliente > 0)
+                                {
+                                    port = (int)mdl.intPuertoCliente;
+                                }
+                                else
+                                {
+                                    port = Convert.ToInt32(ConfigurationManager.AppSettings["Puerto"].ToString());
+                                }
                             }
                         }
-                    }
-                    catch (Exception ePuerto)
-                    {
-                        Console.WriteLine("No se pudo leer el puerto especificado, favor de verificar.: " + ePuerto.Message);
-                        Log.EscribeLog("No se pudo leer el puerto especificado, favor de verificar.: " + ePuerto.Message);
-                    }
-                    if (port > 0)
-                    {
-                        Console.WriteLine($"Iniciando Servidor C-Store SCP en el  puerto {port}");
+                        catch (Exception ePuerto)
+                        {
+                            Console.WriteLine("No se pudo leer el puerto especificado, favor de verificar.: " + ePuerto.Message);
+                            Log.EscribeLog("No se pudo leer el puerto especificado, favor de verificar.: " + ePuerto.Message);
+                        }
+                        if (port > 0)
+                        {
+                            Console.WriteLine($"Iniciando Servidor C-Store SCP en el  puerto {port}");
 
-                        var server = DicomServer.Create<CStoreSCP>(port);
-                        Log.EscribeLog($"Iniciando Servidor C-Store SCP en el  puerto {port}");
-                        setService();
-                        // end process
-                        Console.WriteLine("Oprimir <return> para finalizar...");
-                        Console.ReadLine();
+                            var server = DicomServer.Create<CStoreSCP>(port);
+                            Log.EscribeLog($"Iniciando Servidor C-Store SCP en el  puerto {port}");
+                            ConfigDataAccess.setService(id_Servicio, vchClaveSitio);
+                            // end process
+                            Console.WriteLine("Oprimir <return> para finalizar...");
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se pudo leer el puerto especificado, favor de verificar.");
+                            Log.EscribeLog("No se pudo leer el puerto especificado, favor de verificar.");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("No se pudo leer el puerto especificado, favor de verificar.");
-                        Log.EscribeLog("No se pudo leer el puerto especificado, favor de verificar.");
-                    }
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo encontrar los datos para la búsqueda de sitio. En espera de los datos de configuración.");
+                    Log.EscribeLog("No se pudo encontrar los datos para la búsqueda de sitio. En espera de los datos de configuración.");
                 }
             }
             catch (Exception eLoadService)
@@ -304,6 +238,9 @@ namespace FUJI.ListenerSCP.Servicio
                     try
                     {
                         PathDestino = ConfigurationManager.AppSettings["PathDes"].ToString();
+                        //Verificar Folder
+                        if (!Directory.Exists(PathDestino))
+                            Directory.CreateDirectory(PathDestino);
                     }
                     catch (Exception ePATHDES)
                     {
@@ -315,14 +252,24 @@ namespace FUJI.ListenerSCP.Servicio
                     }
                     if (vchPathRep != "")
                     {
-                        var studyUid = request.Dataset.Get<string>(DicomTag.StudyInstanceUID);
-                        var AccNum = request.Dataset.Get<string>(DicomTag.AccessionNumber);
-                        var Modality = request.Dataset.Get<string>(DicomTag.Modality);
-                        var Edad = request.Dataset.Get<string>(DicomTag.PatientAge);
-                        var FechaNac = request.Dataset.Get<string>(DicomTag.PatientBirthDate);
-                        var PatientID = request.Dataset.Get<string>(DicomTag.PatientID);
-                        var patienName = request.Dataset.Get<string>(DicomTag.PatientName);
-                        var instUid = request.SOPInstanceUID.UID;
+                        string studyUid = "";
+                        string AccNum = "";
+                        string Modality = "";
+                        string Edad = "";
+                        string PatientID = "";
+                        string patienName = "";
+                        string genero = "";
+                        string instUid = "";
+                        string FechaNac = "";
+                        try { studyUid = request.Dataset.Contains(DicomTag.StudyInstanceUID) ? request.Dataset.Get<string>(DicomTag.StudyInstanceUID) : ""; } catch (Exception eUI) { studyUid = ""; }
+                        try { AccNum = request.Dataset.Contains(DicomTag.AccessionNumber) ? request.Dataset.Get<string>(DicomTag.AccessionNumber) : ""; } catch (Exception eUI) { AccNum = ""; }
+                        try { Modality = request.Dataset.Contains(DicomTag.Modality) ? request.Dataset.Get<string>(DicomTag.Modality) : ""; } catch (Exception eUI) { Modality = ""; }
+                        try { Edad = request.Dataset.Contains(DicomTag.PatientAge) ? request.Dataset.Get<string>(DicomTag.PatientAge) : ""; } catch (Exception eUI) { Edad = ""; }
+                        try { FechaNac = request.Dataset.Contains(DicomTag.PatientBirthDate) ? request.Dataset.Get<string>(DicomTag.PatientBirthDate) : ""; } catch (Exception eUI) { FechaNac = ""; }
+                        try { PatientID = request.Dataset.Contains(DicomTag.PatientID) ? request.Dataset.Get<string>(DicomTag.PatientID) : ""; } catch (Exception eUI) { PatientID = ""; }
+                        try { patienName = request.Dataset.Contains(DicomTag.PatientName) ? request.Dataset.Get<string>(DicomTag.PatientName) : ""; } catch (Exception eUI) { patienName = ""; }
+                        try { genero = request.Dataset.Contains(DicomTag.PatientSex) ? request.Dataset.Get<string>(DicomTag.PatientSex) : ""; } catch (Exception eUI) { genero = ""; }
+                        try { instUid = request.SOPInstanceUID.UID; } catch (Exception eUI) { instUid = ""; }
 
                         Console.WriteLine(instUid.ToString());
                         Log.EscribeLog("Leyendo: " + instUid.ToString());
@@ -332,31 +279,33 @@ namespace FUJI.ListenerSCP.Servicio
                         if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
                         path = Path.Combine(path, instUid) + ".dcm";
-                        tbl_MST_Estudio mdlEstudio = new tbl_MST_Estudio();
-                        tbl_DET_Estudio mdlDetalle = new tbl_DET_Estudio();
+                        DataAccessLocal.tbl_MST_EstudioAUX mdlEstudio = new DataAccessLocal.tbl_MST_EstudioAUX();
+                        DataAccessLocal.tbl_DET_EstudioAUX mdlDetalle = new DataAccessLocal.tbl_DET_EstudioAUX();
                         bool valido = false;
                         try
                         {
                             //Obtener MST
-                            mdlEstudio.vchAccessionNumber = AccNum;
                             mdlEstudio.id_Sitio = id_Servicio;
                             mdlEstudio.intModalidadID = getModalidad(Modality);
-                            mdlEstudio.PatientID = PatientID;
+                            mdlEstudio.PatientID = PatientID.Trim() == "" ? getPatientID(mdlEstudio.id_Sitio): PatientID;
                             mdlEstudio.vchPatientBirthDate = FechaNac;
-                            mdlEstudio.PatientName = patienName;
+                            mdlEstudio.PatientName = patienName.Replace("^^", " ").Replace("^^^", " ").Replace("^", " ");
                             mdlEstudio.datFecha = DateTime.Now;
+                            mdlEstudio.vchgenero = genero;
+                            mdlEstudio.vchEdad = Edad == "" && FechaNac != "" ? getEdad(FechaNac) : Edad;
+                            mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber(mdlEstudio.id_Sitio, mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
 
                             //Obtener DET
-                            long length = new System.IO.FileInfo(path).Length;
-                            mdlDetalle.intSizeFile = (int)length;
+
                             mdlDetalle.vchNameFile = Path.GetFileName(path);
                             mdlDetalle.vchPathFile = path.ToString();
                             mdlDetalle.vchStudyInstanceUID = studyUid;
                             mdlDetalle.datFecha = DateTime.Now;
                             mdlDetalle.intEstatusID = 1;
+                            mdlDetalle.bitSync = false;
                             valido = true;
                         }
-                        catch(Exception evalidar)
+                        catch (Exception evalidar)
                         {
                             valido = false;
                             Log.EscribeLog("Existe un error al obtener el estudio: " + evalidar.Message);
@@ -364,14 +313,22 @@ namespace FUJI.ListenerSCP.Servicio
 
                         try
                         {
+                            request.Dataset.Remove(DicomTag.PatientID);
+                            request.Dataset.Remove(DicomTag.AccessionNumber);
+                            request.Dataset.Remove(DicomTag.PatientAge);
+                            request.Dataset.Add(new DicomCodeString(DicomTag.AccessionNumber, mdlEstudio.vchAccessionNumber));
+                            request.Dataset.Add(new DicomCodeString(DicomTag.PatientID, mdlEstudio.PatientID));
+                            request.Dataset.Add(new DicomCodeString(DicomTag.PatientAge, mdlEstudio.PatientID));
                             request.File.Save(path);
-                            setService();
+                            long length = new System.IO.FileInfo(path).Length;
+                            mdlDetalle.intSizeFile = (int)length;
+                            ConfigDataAccess.setService(id_Servicio, vchClaveSitio);
                             if (valido)
                             {
-                                setEstudio(mdlEstudio, mdlDetalle);
+                                NapoleonAUXDataAccess.setEstudio(mdlEstudio, mdlDetalle);
                             }
                         }
-                        catch(Exception eSEND)
+                        catch (Exception eSEND)
                         {
                             Log.EscribeLog("Existe error al guardar el archivo: " + eSEND.Message);
                         }
@@ -389,14 +346,97 @@ namespace FUJI.ListenerSCP.Servicio
                 return new DicomCStoreResponse(request, DicomStatus.Success);
             }
 
+            private string getEdad(string _Edad)
+            {
+                string edad = "";
+                try
+                {
+                    DateTime fechaNacimiento = Convert.ToDateTime(_Edad);
+                    string[] format = { "yyyyMMdd" };
+                    DateTime date;
+                    int anios = 0;
+                    if (DateTime.TryParseExact(_Edad,
+                           format,
+                           System.Globalization.CultureInfo.InvariantCulture,
+                           System.Globalization.DateTimeStyles.None,
+                           out date))
+                    {
+                        anios = (DateTime.Today.Year - date.Year);
+                        if (date > DateTime.Today.AddYears(-anios))
+                            anios--;
+                    }
+                    
+                    edad = anios.ToString();
+                }
+                catch (Exception egE)
+                {
+                    edad = "0";
+                    Log.EscribeLog("Existe un error al calcular la edad: " + egE.Message);
+                }
+                return edad;
+            }
+
+            private string getPatientID(int? id_Sitio)
+            {
+                string PatientID = "";
+                try
+                {
+                    string id = NapoleonAUXDataAccess.getPatientID();
+                    PatientID = vchClaveSitio + (id == "" ? Guid.NewGuid().ToString() : id);
+                }
+                catch(Exception egPI)
+                {
+                    Log.EscribeLog("Existe error en getPatientID: " + egPI.Message);
+                    PatientID = "";
+                }
+                return PatientID;
+            }
+
+            private string getAccNumber(object id_Sitio, object intModalidadID, string patientID)
+            {
+                string AccNum = "";
+                string accAux = "";
+                try
+                {
+                    int consec = 0;
+                    try
+                    {
+                        accAux = NapoleonAUXDataAccess.getAccNumber(patientID.Trim(), id_Servicio);
+                        if (accAux == "")
+                            consec = NapoleonAUXDataAccess.getConsecutivo();
+                    }
+                    catch (Exception)
+                    {
+                        consec = 0;
+                    }
+                    if (accAux == "")
+                    {
+                        AccNum = id_Sitio.ToString() + intModalidadID.ToString() + (patientID.ToString().Trim() != "" ? patientID.ToString() : "XXXXX") + consec;
+                    }
+                    else
+                    {
+                        AccNum = accAux;
+                    }
+                }
+                catch (Exception egAN)
+                {
+                    AccNum = "";
+                    Log.EscribeLog("Existe error en getAccNumber: " + egAN.Message);
+                }
+                return AccNum;
+            }
+
             private int? getModalidad(string modality)
             {
                 int? intModalidadID = 0;
                 try
                 {
-                    using(ConfigDA = new dbConfigEntities())
+                    using(NapAuxDA = new NAPOLEONAUXEntities())
                     {
-                        intModalidadID = ConfigDA.tbl_CAT_Modalidad.First(x => x.vchModalidadClave.Trim().ToUpper() == modality.ToUpper().Trim()).intModalidadID;
+                        if (NapAuxDA.tbl_CAT_ModalidadAUX.Any(x => x.vchModalidadClave.Trim().ToUpper() == modality.ToUpper().Trim()))
+                        {
+                            intModalidadID = NapAuxDA.tbl_CAT_ModalidadAUX.First(x => x.vchModalidadClave.Trim().ToUpper() == modality.ToUpper().Trim()).intModalidadID;
+                        }
                     }
                 }
                 catch(Exception egS)
@@ -417,82 +457,7 @@ namespace FUJI.ListenerSCP.Servicio
                 return new DicomCEchoResponse(request, DicomStatus.Success);
             }
 
-            public void setService()
-            {
-                try
-                {
-                    tbl_DET_ServicioSitio mdl = new tbl_DET_ServicioSitio();
-
-                    if (id_Servicio > 0)
-                    {
-                        using (ConfigDA = new dbConfigEntities())
-                        {
-                            mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == id_Servicio);
-                            mdl.datFechaSCP = DateTime.Now;
-                            ConfigDA.SaveChanges();
-                        }
-                    }
-                    else
-                    {
-                        using (ConfigDA = new dbConfigEntities())
-                        {
-                            tbl_ConfigSitio mdlSitio = new tbl_ConfigSitio();
-                            if (ConfigDA.tbl_ConfigSitio.Any(x => x.vchClaveSitio == vchClaveSitio))
-                            {
-                                mdlSitio = ConfigDA.tbl_ConfigSitio.First(x => x.vchClaveSitio == vchClaveSitio);
-                                mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == mdlSitio.id_Sitio);
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                    }
-                }
-                catch (Exception eSS)
-                {
-                    Log.EscribeLog("Existe un error en setService 2: " + eSS.Message);
-                    //throw eSS;
-                }
-            }
-
-            public void setEstudio(tbl_MST_Estudio mdlEstudio, tbl_DET_Estudio mdlDetalle)
-            {
-                try
-                {
-                    using (ConfigDA = new dbConfigEntities())
-                    {
-                        if (!ConfigDA.tbl_MST_Estudio.Any(x => x.id_Sitio == mdlEstudio.id_Sitio && x.vchAccessionNumber.Trim() == mdlEstudio.vchAccessionNumber))
-                        {
-                            ConfigDA.tbl_MST_Estudio.Add(mdlEstudio);
-                            ConfigDA.SaveChanges();
-                            mdlDetalle.intEstudioID = mdlEstudio.intEstudioID;
-                            if (mdlDetalle.intEstudioID > 0)
-                            {
-                                using (ConfigDA = new dbConfigEntities())
-                                {
-                                    ConfigDA.tbl_DET_Estudio.Add(mdlDetalle);
-                                    ConfigDA.SaveChanges();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            mdlDetalle.intEstudioID = ConfigDA.tbl_MST_Estudio.First(x => x.id_Sitio == mdlEstudio.id_Sitio && x.vchAccessionNumber.Trim() == mdlEstudio.vchAccessionNumber).intEstudioID;
-                            if (mdlDetalle.intEstudioID > 0)
-                            {
-                                using (ConfigDA = new dbConfigEntities())
-                                {
-                                    ConfigDA.tbl_DET_Estudio.Add(mdlDetalle);
-                                    ConfigDA.SaveChanges();
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception esE)
-                {
-                    Log.EscribeLog("Existe un error en setEstudio: " + esE.Message);
-                }
-            }
+                      
         }
 
         protected override void OnStart(string[] args)

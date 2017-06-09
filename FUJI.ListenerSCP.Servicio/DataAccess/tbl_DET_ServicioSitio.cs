@@ -18,6 +18,7 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
         public Nullable<int> id_Sitio { get; set; }
         public Nullable<System.DateTime> datFechaSCP { get; set; }
         public Nullable<System.DateTime> datFechaSCU { get; set; }
+        public Nullable<System.DateTime> datFechaSync { get; set; }
     
         public virtual tbl_ConfigSitio tbl_ConfigSitio { get; set; }
     }

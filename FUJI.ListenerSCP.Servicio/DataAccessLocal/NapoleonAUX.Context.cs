@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FUJI.ListenerSCP.Servicio.DataAccess
+namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbConfigEntities : DbContext
+    public partial class NAPOLEONAUXEntities : DbContext
     {
-        public dbConfigEntities()
-            : base("name=dbConfigEntities")
+        public NAPOLEONAUXEntities()
+            : base("name=NAPOLEONAUXEntities")
         {
         }
     
@@ -25,12 +25,10 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<tbl_CAT_Modalidad> tbl_CAT_Modalidad { get; set; }
-        public DbSet<tbl_CAT_TipoUsuario> tbl_CAT_TipoUsuario { get; set; }
-        public DbSet<tbl_CAT_Usuarios> tbl_CAT_Usuarios { get; set; }
-        public DbSet<tbl_ConfigSitio> tbl_ConfigSitio { get; set; }
-        public DbSet<tbl_DET_Estudio> tbl_DET_Estudio { get; set; }
-        public DbSet<tbl_DET_ServicioSitio> tbl_DET_ServicioSitio { get; set; }
-        public DbSet<tbl_MST_Estudio> tbl_MST_Estudio { get; set; }
+        public DbSet<tbl_CAT_EstatusAUX> tbl_CAT_EstatusAUX { get; set; }
+        public DbSet<tbl_CAT_ModalidadAUX> tbl_CAT_ModalidadAUX { get; set; }
+        public DbSet<tbl_ConfigSitioAUX> tbl_ConfigSitioAUX { get; set; }
+        public DbSet<tbl_DET_EstudioAUX> tbl_DET_EstudioAUX { get; set; }
+        public DbSet<tbl_MST_EstudioAUX> tbl_MST_EstudioAUX { get; set; }
     }
 }

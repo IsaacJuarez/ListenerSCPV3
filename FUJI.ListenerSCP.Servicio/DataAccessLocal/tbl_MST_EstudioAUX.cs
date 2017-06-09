@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FUJI.ListenerSCP.Servicio.DataAccess
+namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_MST_Estudio
+    public partial class tbl_MST_EstudioAUX
     {
-        public tbl_MST_Estudio()
+        public tbl_MST_EstudioAUX()
         {
-            this.tbl_DET_Estudio = new HashSet<tbl_DET_Estudio>();
+            this.tbl_DET_EstudioAUX = new HashSet<tbl_DET_EstudioAUX>();
         }
     
         public int intEstudioID { get; set; }
@@ -26,13 +26,14 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
         public string vchPatientBirthDate { get; set; }
         public string PatientID { get; set; }
         public string PatientName { get; set; }
-        public Nullable<System.DateTime> datFecha { get; set; }
         public Nullable<int> intNumeroArchivo { get; set; }
         public Nullable<int> intTamanoTotal { get; set; }
+        public Nullable<System.DateTime> datFecha { get; set; }
         public string vchgenero { get; set; }
+        public string vchEdad { get; set; }
     
-        public virtual tbl_CAT_Modalidad tbl_CAT_Modalidad { get; set; }
-        public virtual tbl_ConfigSitio tbl_ConfigSitio { get; set; }
-        public virtual ICollection<tbl_DET_Estudio> tbl_DET_Estudio { get; set; }
+        public virtual tbl_CAT_ModalidadAUX tbl_CAT_ModalidadAUX { get; set; }
+        public virtual tbl_ConfigSitioAUX tbl_ConfigSitioAUX { get; set; }
+        public virtual ICollection<tbl_DET_EstudioAUX> tbl_DET_EstudioAUX { get; set; }
     }
 }

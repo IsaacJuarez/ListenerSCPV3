@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7d98d99447c4873a2fc07b683c46d59" Name="Diagram1">
+        <EntityTypeShape EntityType="NAPOLEONAUXModel.tbl_CAT_EstatusAUX" Width="2" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="NAPOLEONAUXModel.tbl_CAT_ModalidadAUX" Width="2" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="NAPOLEONAUXModel.tbl_ConfigSitioAUX" Width="2" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NAPOLEONAUXModel.tbl_DET_EstudioAUX" Width="2" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="NAPOLEONAUXModel.tbl_MST_EstudioAUX" Width="2" PointX="3" PointY="1" />
+        <AssociationConnector Association="NAPOLEONAUXModel.FK_CAT_Estudio_DET_Estudio" />
+        <AssociationConnector Association="NAPOLEONAUXModel.FK_CAT_Modalidad_MST_Estudio" />
+        <AssociationConnector Association="NAPOLEONAUXModel.FK_ConfigSitio_MST_Estudio" />
+        <AssociationConnector Association="NAPOLEONAUXModel.FK_MST_Estudio_DET_Estudio" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

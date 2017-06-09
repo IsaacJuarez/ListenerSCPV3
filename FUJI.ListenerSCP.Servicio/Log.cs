@@ -18,8 +18,8 @@ namespace FUJI.ListenerSCP.Servicio
                 if (!Directory.Exists(LogDirectory))
                     Directory.CreateDirectory(LogDirectory);
                 DateTime Fecha = DateTime.Now;
-                string content = "SCP[" + Fecha.ToString("yyyy/MM/dd HH:mm:ss") + "]" + " " + Mensaje;
-                string ArchivoLog = LogDirectory + Fecha.ToShortDateString().Replace("/", "-") + ".txt";
+                string content = "[" + Fecha.ToString("yyyy/MM/dd HH:mm:ss") + "]" + " " + Mensaje;
+                string ArchivoLog = LogDirectory + "SCP[" + Fecha.ToShortDateString().Replace("/", "-") + "].txt";
                 using (StreamWriter file = new StreamWriter(ArchivoLog, true))
                 {
                     file.WriteLine(content);

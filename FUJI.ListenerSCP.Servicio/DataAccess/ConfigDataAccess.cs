@@ -1,58 +1,29 @@
-﻿using System;
+﻿using FUJI.ListenerSCP.Servicio.Feed2Service;
+using System;
 using System.Linq;
 
 namespace FUJI.ListenerSCP.Servicio.DataAccess
 {
     public class ConfigDataAccess
     {
-        public static dbConfigEntities ConfigDA;
+        public static NapoleonServiceClient NapoleonDA = new NapoleonServiceClient();
+
+
         public static void setService(int id_Servicio, string vchClaveSitio)
         {
             try
             {
-                tbl_DET_ServicioSitio mdl = new tbl_DET_ServicioSitio();
-
-                if (id_Servicio > 0)
+                ClienteF2CRequest request = new ClienteF2CRequest();
+                //request.Token = 
+                request.id_Sitio = id_Servicio;
+                //request.id_SitioSpecified = true;
+                request.vchClaveSitio = vchClaveSitio;
+                request.Token = Security.Encrypt(id_Servicio + "|" + vchClaveSitio);
+                request.tipoServicio = 1;
+                //request.tipoServicioSpecified = true;
+                using (NapoleonDA = new NapoleonServiceClient())
                 {
-                    using (ConfigDA = new dbConfigEntities())
-                    {
-                        if (ConfigDA.tbl_DET_ServicioSitio.Any(x => x.id_Sitio == id_Servicio))
-                        {
-                            using (ConfigDA = new dbConfigEntities())
-                            {
-                                mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == id_Servicio);
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                        else
-                        {
-                            using (ConfigDA = new dbConfigEntities())
-                            {
-                                mdl.id_Sitio = id_Servicio;
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.tbl_DET_ServicioSitio.Add(mdl);
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (vchClaveSitio != "")
-                    {
-                        using (ConfigDA = new dbConfigEntities())
-                        {
-                            DataAccess.tbl_ConfigSitio mdlSitio = new DataAccess.tbl_ConfigSitio();
-                            if (ConfigDA.tbl_ConfigSitio.Any(x => x.vchClaveSitio == vchClaveSitio))
-                            {
-                                mdlSitio = ConfigDA.tbl_ConfigSitio.First(x => x.vchClaveSitio == vchClaveSitio);
-                                mdl = ConfigDA.tbl_DET_ServicioSitio.First(x => x.id_Sitio == mdlSitio.id_Sitio);
-                                mdl.datFechaSCP = DateTime.Now;
-                                ConfigDA.SaveChanges();
-                            }
-                        }
-                    }
+                    NapoleonDA.setService(request);
                 }
             }
             catch (Exception eSS)
@@ -62,34 +33,28 @@ namespace FUJI.ListenerSCP.Servicio.DataAccess
             }
         }
 
-        public static DataAccess.tbl_ConfigSitio getConeccion(string vchClaveSitio)
+        public static ClienteF2CResponse getConeccion(string vchClaveSitio, int id_Sitio)
         {
-            DataAccess.tbl_ConfigSitio mdl = new DataAccess.tbl_ConfigSitio();
+            ClienteF2CResponse response = new ClienteF2CResponse();
             try
             {
-                using (ConfigDA = new dbConfigEntities())
+                ClienteF2CRequest request = new ClienteF2CRequest();
+                request.id_Sitio = id_Sitio;
+                //request.id_SitioSpecified = true;
+                request.vchClaveSitio = vchClaveSitio;
+                request.Token = Security.Encrypt(id_Sitio + "|" + vchClaveSitio);
+                //response = NapoleonDA.getConeccion(request);
+                using(NapoleonDA = new NapoleonServiceClient())
                 {
-                    if (ConfigDA.tbl_ConfigSitio.Any(item => (bool)item.bitActivo))
-                    {
-                        var query = (from item in ConfigDA.tbl_ConfigSitio
-                                     where (bool)item.bitActivo && item.vchClaveSitio == vchClaveSitio
-                                     select item);
-                        if (query != null)
-                        {
-                            if (query.Count() > 0)
-                            {
-                                mdl = query.First();
-                            }
-                        }
-                    }
+                    response = NapoleonDA.getConeccion(request);
                 }
-                Log.EscribeLog("Se consulta la configuración: Puerto Cliente: " + mdl.intPuertoCliente);
+                Log.EscribeLog("Se consulta la configuración: Puerto Cliente: " + response.ConfigSitio.intPuertoCliente);
             }
             catch (Exception egc)
             {
                 Log.EscribeLog("Existe un error al obtner las configuraciones para el Servicio SCP: " + egc);
             }
-            return mdl;
+            return response;
         }
     }
 }

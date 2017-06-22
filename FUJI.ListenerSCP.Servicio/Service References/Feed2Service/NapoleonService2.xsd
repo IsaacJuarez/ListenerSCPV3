@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" />
+  <xs:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" />
+  <xs:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" />
+  <xs:element name="Logear">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="Request" nillable="true" type="q1:LoginRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogearResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="LogearResult" nillable="true" type="q2:LoginResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSitios">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSitiosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="getSitiosResult" nillable="true" type="q3:ArrayOftbl_ConfigSitio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProyectos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProyectosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="getProyectosResult" nillable="true" type="q4:ArrayOftbl_CAT_Proyecto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUsuarios">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUsuariosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getUsuariosResult" nillable="true" type="q5:ArrayOfclsUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTipoUsuario">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getTipoUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="getTipoUsuarioResult" nillable="true" type="q6:ArrayOftbl_CAT_TipoUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRELProyecto_Sitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRELProyecto_SitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="getRELProyecto_SitioResult" nillable="true" type="q7:ArrayOftbl_REL_ProyectoSitio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setProyecto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q8:ProyectoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setProyectoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setProyectoResult" nillable="true" type="q9:ProyectoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusSitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+        <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusSitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="updateEstatusSitioResult" nillable="true" type="q10:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusProyectos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+        <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusProyectosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="updateEstatusProyectosResult" nillable="true" type="q11:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intUsuarioID" type="xs:int" />
+        <xs:element minOccurs="0" name="activo" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="updateEstatusUsuarioResult" nillable="true" type="q12:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="user" nillable="true" type="q13:tbl_CAT_Usuarios" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="setUsuarioResult" nillable="true" type="q14:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="user" nillable="true" type="q15:tbl_CAT_Usuarios" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="updateUsuarioResult" nillable="true" type="q16:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getServicioSitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getServicioSitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getServicioSitioResult" nillable="true" type="q17:ArrayOfclsDashboardService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validarSitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validarSitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="validarSitioResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setSitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="mdlSitio" nillable="true" type="q18:tbl_ConfigSitio" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="mdlRegistro" nillable="true" type="q19:tbl_RegistroSitio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setSitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="setSitioResult" nillable="true" type="q20:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getListEstudios">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intEstatusID" type="xs:int" />
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+        <xs:element minOccurs="0" name="intModalidadID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getListEstudiosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getListEstudiosResult" nillable="true" type="q21:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCatalogo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_TipoCat" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="intProyecto" type="xs:int" />
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCatalogoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getCatalogoResult" nillable="true" type="q22:ArrayOfclsModeloCatalogo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadEstudio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="Request" nillable="true" type="q23:EstudioRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadEstudioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setPrioridadEstudioResult" nillable="true" type="q24:EstudioResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="_resp" nillable="true" type="q25:PrioridadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setPrioridadResult" nillable="true" type="q26:PrioridadResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRegistroContacto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRegistroContactoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" minOccurs="0" name="getRegistroContactoResult" nillable="true" type="q27:tbl_RegistroSitio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadesSucModAcomodar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="_resp" nillable="true" type="q28:PrioridadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadesSucModAcomodarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setPrioridadesSucModAcomodarResult" nillable="true" type="q29:PrioridadResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusPrioridadModalidad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="Request" nillable="true" type="q30:PrioridadModalidadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusPrioridadModalidadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="updateEstatusPrioridadModalidadResult" nillable="true" type="q31:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadesSucMod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="Request" nillable="true" type="q32:PrioridadSucModRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setPrioridadesSucModResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="setPrioridadesSucModResult" nillable="true" type="q33:clsMensaje" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosTabla">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FechaIncio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="FechaFin" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="sucOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosTablaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getDatosTablaResult" nillable="true" type="q34:ArrayOfclsEntidadTabla" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosGraficas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="FechaIncio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="FechaFin" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="sucOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosGraficasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getDatosGraficasResult" nillable="true" type="q35:ArrayOfclsGrafica" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosTop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fini" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="ffin" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="sucOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDatosTopResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" minOccurs="0" name="getDatosTopResult" nillable="true" type="q36:clsTop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPromedioEnvio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FechaIncio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="FechaFin" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="sucOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPromedioEnvioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getPromedioEnvioResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getConeccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q37:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getConeccionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="getConeccionResult" nillable="true" type="q38:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q39:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setServiceResult" nillable="true" type="q40:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setEstudioServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q41:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setEstudioServerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setEstudioServerResult" nillable="true" type="q42:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getEstudiosEnviar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q43:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getEstudiosEnviarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="getEstudiosEnviarResult" nillable="true" type="q44:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q45:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateEstatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="updateEstatusResult" nillable="true" type="q46:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getVerificaSitio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q47:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getVerificaSitioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="getVerificaSitioResult" nillable="true" type="q48:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setConfiguracion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q49:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setConfiguracionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="setConfiguracionResult" nillable="true" type="q50:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateConfiguracion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q51:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateConfiguracionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="updateConfiguracionResult" nillable="true" type="q52:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateConfiguracionServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q53:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="updateConfiguracionServerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="updateConfiguracionServerResult" nillable="true" type="q54:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getXMLFileConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="request" nillable="true" type="q55:ClienteF2CRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getXMLFileConfigResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" minOccurs="0" name="getXMLFileConfigResult" nillable="true" type="q56:ClienteF2CResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

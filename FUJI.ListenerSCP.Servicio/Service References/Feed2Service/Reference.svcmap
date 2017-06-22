@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="805c58f1-b225-4509-8593-271d50bcde24" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:54279/Services/NapoleonService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NapoleonService.xsd" MetadataType="Schema" ID="4f53eb8a-6ea7-4837-8ed0-d2ef9c88e7ac" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NapoleonService1.xsd" MetadataType="Schema" ID="6cd10c17-2941-40b3-8293-1bdd54d4cbf6" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NapoleonService.wsdl" MetadataType="Wsdl" ID="ec6d10ef-af9b-4329-baee-6b57f40588e6" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?wsdl" />
+    <MetadataFile FileName="NapoleonService2.xsd" MetadataType="Schema" ID="40a8c10e-3344-4314-8a04-f9466f2698df" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NapoleonService3.xsd" MetadataType="Schema" ID="8b840ae9-29db-45b5-8037-3011627d7cbc" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NapoleonService.disco" MetadataType="Disco" ID="15c6304f-e5c4-4d20-b045-8b450c6c7a97" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?disco" />
+    <MetadataFile FileName="NapoleonService4.xsd" MetadataType="Schema" ID="24e56264-3fc2-420b-b189-e3d75ea5a0e5" SourceId="1" SourceUrl="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

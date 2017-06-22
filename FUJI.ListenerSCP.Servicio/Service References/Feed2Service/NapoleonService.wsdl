@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NapoleonService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/_3.FUJI.Napoleon.Site.Services.DataContracts" />
+      <xsd:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" />
+      <xsd:import schemaLocation="http://localhost:54279/Services/NapoleonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="INapoleonService_Logear_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logear" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_Logear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogearResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getSitios_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSitios" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getSitios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSitiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getProyectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:getProyectos" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getProyectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getProyectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getTipoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTipoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getTipoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTipoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getRELProyecto_Sitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:getRELProyecto_Sitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getRELProyecto_Sitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getRELProyecto_SitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setProyecto_InputMessage">
+    <wsdl:part name="parameters" element="tns:setProyecto" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setProyecto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setProyectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusSitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusSitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusSitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusSitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusProyectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusProyectos" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusProyectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusProyectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusUsuario" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:setUsuario" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateUsuario" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getServicioSitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:getServicioSitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getServicioSitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getServicioSitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_validarSitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:validarSitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_validarSitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:validarSitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setSitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:setSitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setSitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setSitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getListEstudios_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListEstudios" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getListEstudios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListEstudiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadEstudio_InputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadEstudio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadEstudio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadEstudioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridad_InputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridad" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getRegistroContacto_InputMessage">
+    <wsdl:part name="parameters" element="tns:getRegistroContacto" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getRegistroContacto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getRegistroContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadesSucModAcomodar_InputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadesSucModAcomodar" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadesSucModAcomodar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadesSucModAcomodarResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusPrioridadModalidad_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusPrioridadModalidad" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatusPrioridadModalidad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusPrioridadModalidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadesSucMod_InputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadesSucMod" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setPrioridadesSucMod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setPrioridadesSucModResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosTabla_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosTabla" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosTabla_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosTablaResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosGraficas_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosGraficas" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosGraficas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosGraficasResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosTop_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosTop" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getDatosTop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDatosTopResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getPromedioEnvio_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPromedioEnvio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getPromedioEnvio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPromedioEnvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getConeccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getConeccion" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getConeccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getConeccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setService_InputMessage">
+    <wsdl:part name="parameters" element="tns:setService" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setEstudioServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:setEstudioServer" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setEstudioServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setEstudioServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getEstudiosEnviar_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEstudiosEnviar" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getEstudiosEnviar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEstudiosEnviarResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatus" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getVerificaSitio_InputMessage">
+    <wsdl:part name="parameters" element="tns:getVerificaSitio" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getVerificaSitio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getVerificaSitioResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setConfiguracion_InputMessage">
+    <wsdl:part name="parameters" element="tns:setConfiguracion" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_setConfiguracion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setConfiguracionResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateConfiguracion_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateConfiguracion" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateConfiguracion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateConfiguracionResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateConfiguracionServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateConfiguracionServer" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_updateConfiguracionServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateConfiguracionServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getXMLFileConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:getXMLFileConfig" />
+  </wsdl:message>
+  <wsdl:message name="INapoleonService_getXMLFileConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getXMLFileConfigResponse" />
+  </wsdl:message>
+  <wsdl:portType name="INapoleonService">
+    <wsdl:operation name="Logear">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/Logear" message="tns:INapoleonService_Logear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/LogearResponse" message="tns:INapoleonService_Logear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSitios">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getSitios" message="tns:INapoleonService_getSitios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getSitiosResponse" message="tns:INapoleonService_getSitios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getProyectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getProyectos" message="tns:INapoleonService_getProyectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getProyectosResponse" message="tns:INapoleonService_getProyectos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getUsuarios" message="tns:INapoleonService_getUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getUsuariosResponse" message="tns:INapoleonService_getUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTipoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getTipoUsuario" message="tns:INapoleonService_getTipoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getTipoUsuarioResponse" message="tns:INapoleonService_getTipoUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getRELProyecto_Sitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getRELProyecto_Sitio" message="tns:INapoleonService_getRELProyecto_Sitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getRELProyecto_SitioResponse" message="tns:INapoleonService_getRELProyecto_Sitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setProyecto">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setProyecto" message="tns:INapoleonService_setProyecto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setProyectoResponse" message="tns:INapoleonService_setProyecto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusSitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusSitio" message="tns:INapoleonService_updateEstatusSitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusSitioResponse" message="tns:INapoleonService_updateEstatusSitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusProyectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusProyectos" message="tns:INapoleonService_updateEstatusProyectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusProyectosResponse" message="tns:INapoleonService_updateEstatusProyectos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusUsuario" message="tns:INapoleonService_updateEstatusUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusUsuarioResponse" message="tns:INapoleonService_updateEstatusUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setUsuario" message="tns:INapoleonService_setUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setUsuarioResponse" message="tns:INapoleonService_setUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateUsuario" message="tns:INapoleonService_updateUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateUsuarioResponse" message="tns:INapoleonService_updateUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getServicioSitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getServicioSitio" message="tns:INapoleonService_getServicioSitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getServicioSitioResponse" message="tns:INapoleonService_getServicioSitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="validarSitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/validarSitio" message="tns:INapoleonService_validarSitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/validarSitioResponse" message="tns:INapoleonService_validarSitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setSitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setSitio" message="tns:INapoleonService_setSitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setSitioResponse" message="tns:INapoleonService_setSitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListEstudios">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getListEstudios" message="tns:INapoleonService_getListEstudios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getListEstudiosResponse" message="tns:INapoleonService_getListEstudios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getCatalogo" message="tns:INapoleonService_getCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getCatalogoResponse" message="tns:INapoleonService_getCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadEstudio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadEstudio" message="tns:INapoleonService_setPrioridadEstudio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadEstudioResponse" message="tns:INapoleonService_setPrioridadEstudio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridad">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setPrioridad" message="tns:INapoleonService_setPrioridad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadResponse" message="tns:INapoleonService_setPrioridad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getRegistroContacto">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getRegistroContacto" message="tns:INapoleonService_getRegistroContacto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getRegistroContactoResponse" message="tns:INapoleonService_getRegistroContacto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadesSucModAcomodar">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadesSucModAcomodar" message="tns:INapoleonService_setPrioridadesSucModAcomodar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadesSucModAcomodarResponse" message="tns:INapoleonService_setPrioridadesSucModAcomodar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusPrioridadModalidad">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusPrioridadModalidad" message="tns:INapoleonService_updateEstatusPrioridadModalidad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusPrioridadModalidadResponse" message="tns:INapoleonService_updateEstatusPrioridadModalidad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadesSucMod">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadesSucMod" message="tns:INapoleonService_setPrioridadesSucMod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setPrioridadesSucModResponse" message="tns:INapoleonService_setPrioridadesSucMod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDatosTabla">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getDatosTabla" message="tns:INapoleonService_getDatosTabla_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getDatosTablaResponse" message="tns:INapoleonService_getDatosTabla_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDatosGraficas">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getDatosGraficas" message="tns:INapoleonService_getDatosGraficas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getDatosGraficasResponse" message="tns:INapoleonService_getDatosGraficas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDatosTop">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getDatosTop" message="tns:INapoleonService_getDatosTop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getDatosTopResponse" message="tns:INapoleonService_getDatosTop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPromedioEnvio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getPromedioEnvio" message="tns:INapoleonService_getPromedioEnvio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getPromedioEnvioResponse" message="tns:INapoleonService_getPromedioEnvio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getConeccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getConeccion" message="tns:INapoleonService_getConeccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getConeccionResponse" message="tns:INapoleonService_getConeccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setService">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setService" message="tns:INapoleonService_setService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setServiceResponse" message="tns:INapoleonService_setService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setEstudioServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setEstudioServer" message="tns:INapoleonService_setEstudioServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setEstudioServerResponse" message="tns:INapoleonService_setEstudioServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getEstudiosEnviar">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getEstudiosEnviar" message="tns:INapoleonService_getEstudiosEnviar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getEstudiosEnviarResponse" message="tns:INapoleonService_getEstudiosEnviar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateEstatus" message="tns:INapoleonService_updateEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateEstatusResponse" message="tns:INapoleonService_updateEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getVerificaSitio">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getVerificaSitio" message="tns:INapoleonService_getVerificaSitio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getVerificaSitioResponse" message="tns:INapoleonService_getVerificaSitio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setConfiguracion">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/setConfiguracion" message="tns:INapoleonService_setConfiguracion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/setConfiguracionResponse" message="tns:INapoleonService_setConfiguracion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateConfiguracion">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateConfiguracion" message="tns:INapoleonService_updateConfiguracion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateConfiguracionResponse" message="tns:INapoleonService_updateConfiguracion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateConfiguracionServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/updateConfiguracionServer" message="tns:INapoleonService_updateConfiguracionServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/updateConfiguracionServerResponse" message="tns:INapoleonService_updateConfiguracionServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getXMLFileConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/INapoleonService/getXMLFileConfig" message="tns:INapoleonService_getXMLFileConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INapoleonService/getXMLFileConfigResponse" message="tns:INapoleonService_getXMLFileConfig_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_INapoleonService" type="tns:INapoleonService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Logear">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/Logear" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSitios">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getSitios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProyectos">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getProyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsuarios">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTipoUsuario">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getTipoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRELProyecto_Sitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getRELProyecto_Sitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setProyecto">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setProyecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusSitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateEstatusSitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusProyectos">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateEstatusProyectos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusUsuario">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateEstatusUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setUsuario">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUsuario">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServicioSitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getServicioSitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validarSitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/validarSitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setSitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setSitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListEstudios">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getListEstudios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogo">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadEstudio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setPrioridadEstudio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridad">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setPrioridad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRegistroContacto">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getRegistroContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadesSucModAcomodar">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setPrioridadesSucModAcomodar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatusPrioridadModalidad">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateEstatusPrioridadModalidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPrioridadesSucMod">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setPrioridadesSucMod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatosTabla">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getDatosTabla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatosGraficas">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getDatosGraficas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatosTop">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getDatosTop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPromedioEnvio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getPromedioEnvio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConeccion">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getConeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setService">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setEstudioServer">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setEstudioServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEstudiosEnviar">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getEstudiosEnviar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEstatus">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVerificaSitio">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getVerificaSitio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setConfiguracion">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/setConfiguracion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateConfiguracion">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateConfiguracion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateConfiguracionServer">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/updateConfiguracionServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getXMLFileConfig">
+      <soap:operation soapAction="http://tempuri.org/INapoleonService/getXMLFileConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NapoleonService">
+    <wsdl:port name="BasicHttpBinding_INapoleonService" binding="tns:BasicHttpBinding_INapoleonService">
+      <soap:address location="http://localhost:54279/Services/NapoleonService.svc/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

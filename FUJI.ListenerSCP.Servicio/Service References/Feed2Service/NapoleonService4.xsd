@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/_2.FUJI.Napoleon.AccesoDatos.DataAccess" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOftbl_ConfigSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_ConfigSitio" nillable="true" type="tns:ArrayOftbl_ConfigSitio" />
+  <xs:complexType name="tbl_ConfigSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFechaSistema" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="in_tPuertoServer" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoCliente" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Usuarios" nillable="true" type="tns:ArrayOftbl_CAT_Usuarios" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio_AUD" nillable="true" type="tns:ArrayOftbl_ConfigSitio_AUD" />
+      <xs:element minOccurs="0" name="tbl_DET_ServicioSitio" nillable="true" type="tns:ArrayOftbl_DET_ServicioSitio" />
+      <xs:element minOccurs="0" name="tbl_MST_Estudio" nillable="true" type="tns:ArrayOftbl_MST_Estudio" />
+      <xs:element minOccurs="0" name="tbl_REL_ProyectoSitio" nillable="true" type="tns:ArrayOftbl_REL_ProyectoSitio" />
+      <xs:element minOccurs="0" name="tbl_REL_SitioModalidad" nillable="true" type="tns:ArrayOftbl_REL_SitioModalidad" />
+      <xs:element minOccurs="0" name="tbl_RegistroSitio" nillable="true" type="tns:ArrayOftbl_RegistroSitio" />
+      <xs:element minOccurs="0" name="vchAETitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchAETitleServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPServidor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchMaskCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchnombreSitio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+  <xs:complexType name="ArrayOftbl_CAT_Usuarios">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_CAT_Usuarios" nillable="true" type="tns:tbl_CAT_Usuarios" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_CAT_Usuarios" nillable="true" type="tns:ArrayOftbl_CAT_Usuarios" />
+  <xs:complexType name="tbl_CAT_Usuarios">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intProyectoID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intTipoUsuarioID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intUsuarioID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Proyecto" nillable="true" type="tns:tbl_CAT_Proyecto" />
+      <xs:element minOccurs="0" name="tbl_CAT_TipoUsuario" nillable="true" type="tns:tbl_CAT_TipoUsuario" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+      <xs:element minOccurs="0" name="vchApellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_CAT_Usuarios" nillable="true" type="tns:tbl_CAT_Usuarios" />
+  <xs:complexType name="tbl_CAT_Proyecto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Usuarios" nillable="true" type="tns:ArrayOftbl_CAT_Usuarios" />
+      <xs:element minOccurs="0" name="tbl_REL_ProyectoSitio" nillable="true" type="tns:ArrayOftbl_REL_ProyectoSitio" />
+      <xs:element minOccurs="0" name="vchProyectoDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_CAT_Proyecto" nillable="true" type="tns:tbl_CAT_Proyecto" />
+  <xs:complexType name="ArrayOftbl_REL_ProyectoSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_REL_ProyectoSitio" nillable="true" type="tns:tbl_REL_ProyectoSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_REL_ProyectoSitio" nillable="true" type="tns:ArrayOftbl_REL_ProyectoSitio" />
+  <xs:complexType name="tbl_REL_ProyectoSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_RelProyectoSitio" type="xs:int" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intProyectoID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Proyecto" nillable="true" type="tns:tbl_CAT_Proyecto" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_REL_ProyectoSitio" nillable="true" type="tns:tbl_REL_ProyectoSitio" />
+  <xs:complexType name="tbl_CAT_TipoUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitEstatus" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intTipoUsuarioID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Usuarios" nillable="true" type="tns:ArrayOftbl_CAT_Usuarios" />
+      <xs:element minOccurs="0" name="vchTipoUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_CAT_TipoUsuario" nillable="true" type="tns:tbl_CAT_TipoUsuario" />
+  <xs:complexType name="ArrayOftbl_ConfigSitio_AUD">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ConfigSitio_AUD" nillable="true" type="tns:tbl_ConfigSitio_AUD" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_ConfigSitio_AUD" nillable="true" type="tns:ArrayOftbl_ConfigSitio_AUD" />
+  <xs:complexType name="tbl_ConfigSitio_AUD">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TIPOMOV_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFechaSitema" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id_SitioAUD" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoCliente" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoServer" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+      <xs:element minOccurs="0" name="vchAETitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchAETitleServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPServidor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchMaskCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombreSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_ConfigSitio_AUD" nillable="true" type="tns:tbl_ConfigSitio_AUD" />
+  <xs:complexType name="ArrayOftbl_DET_ServicioSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_DET_ServicioSitio" nillable="true" type="tns:tbl_DET_ServicioSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_DET_ServicioSitio" nillable="true" type="tns:ArrayOftbl_DET_ServicioSitio" />
+  <xs:complexType name="tbl_DET_ServicioSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datFechaSCP" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFechaSCU" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFechaSync" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intDetServicioID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_DET_ServicioSitio" nillable="true" type="tns:tbl_DET_ServicioSitio" />
+  <xs:complexType name="ArrayOftbl_MST_Estudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_MST_Estudio" nillable="true" type="tns:tbl_MST_Estudio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_MST_Estudio" nillable="true" type="tns:ArrayOftbl_MST_Estudio" />
+  <xs:complexType name="tbl_MST_Estudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PatientID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstudioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intModalidadID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intNumeroArchivo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intTamanoTotal" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Modalidad" nillable="true" type="tns:tbl_CAT_Modalidad" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+      <xs:element minOccurs="0" name="tbl_DET_Estudio" nillable="true" type="tns:ArrayOftbl_DET_Estudio" />
+      <xs:element minOccurs="0" name="tbl_MST_PrioridadEstudio" nillable="true" type="tns:ArrayOftbl_MST_PrioridadEstudio" />
+      <xs:element minOccurs="0" name="vchAccessionNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchEdad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPatientBirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchStudyInstanceUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchgenero" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_MST_Estudio" nillable="true" type="tns:tbl_MST_Estudio" />
+  <xs:complexType name="tbl_CAT_Modalidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intModalidadID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_MST_Estudio" nillable="true" type="tns:ArrayOftbl_MST_Estudio" />
+      <xs:element minOccurs="0" name="tbl_REL_SitioModalidad" nillable="true" type="tns:ArrayOftbl_REL_SitioModalidad" />
+      <xs:element minOccurs="0" name="vchModalidadClave" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchModalidadDesc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_CAT_Modalidad" nillable="true" type="tns:tbl_CAT_Modalidad" />
+  <xs:complexType name="ArrayOftbl_REL_SitioModalidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_REL_SitioModalidad" nillable="true" type="tns:tbl_REL_SitioModalidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_REL_SitioModalidad" nillable="true" type="tns:ArrayOftbl_REL_SitioModalidad" />
+  <xs:complexType name="tbl_REL_SitioModalidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intModalidadID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intREL_SitioModID" type="xs:int" />
+      <xs:element minOccurs="0" name="intSecuencia" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Modalidad" nillable="true" type="tns:tbl_CAT_Modalidad" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_REL_SitioModalidad" nillable="true" type="tns:tbl_REL_SitioModalidad" />
+  <xs:complexType name="ArrayOftbl_DET_Estudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_DET_Estudio" nillable="true" type="tns:tbl_DET_Estudio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_DET_Estudio" nillable="true" type="tns:ArrayOftbl_DET_Estudio" />
+  <xs:complexType name="tbl_DET_Estudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intDetEstudioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstatusID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstudioID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intSizeFile" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_CAT_Estatus" nillable="true" type="tns:tbl_CAT_Estatus" />
+      <xs:element minOccurs="0" name="tbl_DET_Estudio_AUD" nillable="true" type="tns:ArrayOftbl_DET_Estudio_AUD" />
+      <xs:element minOccurs="0" name="tbl_MST_Estudio" nillable="true" type="tns:tbl_MST_Estudio" />
+      <xs:element minOccurs="0" name="vchNameFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchStudyInstanceUID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_DET_Estudio" nillable="true" type="tns:tbl_DET_Estudio" />
+  <xs:complexType name="tbl_CAT_Estatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intEstatusID" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_DET_Estudio" nillable="true" type="tns:ArrayOftbl_DET_Estudio" />
+      <xs:element minOccurs="0" name="vchClaveEstatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchEstatusDesc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_CAT_Estatus" nillable="true" type="tns:tbl_CAT_Estatus" />
+  <xs:complexType name="ArrayOftbl_DET_Estudio_AUD">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_DET_Estudio_AUD" nillable="true" type="tns:tbl_DET_Estudio_AUD" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_DET_Estudio_AUD" nillable="true" type="tns:ArrayOftbl_DET_Estudio_AUD" />
+  <xs:complexType name="tbl_DET_Estudio_AUD">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FECHA" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TIPOMOV_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intDetAUD_EstudioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intDetEstudioID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstatusID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intSizeFile" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_DET_Estudio" nillable="true" type="tns:tbl_DET_Estudio" />
+      <xs:element minOccurs="0" name="vchNameFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathFile" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_DET_Estudio_AUD" nillable="true" type="tns:tbl_DET_Estudio_AUD" />
+  <xs:complexType name="ArrayOftbl_MST_PrioridadEstudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_MST_PrioridadEstudio" nillable="true" type="tns:tbl_MST_PrioridadEstudio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_MST_PrioridadEstudio" nillable="true" type="tns:ArrayOftbl_MST_PrioridadEstudio" />
+  <xs:complexType name="tbl_MST_PrioridadEstudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitAtendido" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bitUrgente" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datAtendido" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFecha" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="intEstudioID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="intPrioridadID" type="xs:int" />
+      <xs:element minOccurs="0" name="intSecuencia" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_MST_Estudio" nillable="true" type="tns:tbl_MST_Estudio" />
+      <xs:element minOccurs="0" name="vchusuarioSol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_MST_PrioridadEstudio" nillable="true" type="tns:tbl_MST_PrioridadEstudio" />
+  <xs:complexType name="ArrayOftbl_RegistroSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_RegistroSitio" nillable="true" type="tns:tbl_RegistroSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_RegistroSitio" nillable="true" type="tns:ArrayOftbl_RegistroSitio" />
+  <xs:complexType name="tbl_RegistroSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="id_RegistroSitio" type="xs:int" />
+      <xs:element minOccurs="0" name="id_Sitio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ConfigSitio" nillable="true" type="tns:tbl_ConfigSitio" />
+      <xs:element minOccurs="0" name="vchClaveActivacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombreCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNumeroContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchVendedor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchpassword" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tbl_RegistroSitio" nillable="true" type="tns:tbl_RegistroSitio" />
+  <xs:complexType name="ArrayOftbl_CAT_Proyecto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_CAT_Proyecto" nillable="true" type="tns:tbl_CAT_Proyecto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_CAT_Proyecto" nillable="true" type="tns:ArrayOftbl_CAT_Proyecto" />
+  <xs:complexType name="ArrayOftbl_CAT_TipoUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_CAT_TipoUsuario" nillable="true" type="tns:tbl_CAT_TipoUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_CAT_TipoUsuario" nillable="true" type="tns:ArrayOftbl_CAT_TipoUsuario" />
+</xs:schema>

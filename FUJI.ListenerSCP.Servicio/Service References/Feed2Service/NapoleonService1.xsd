@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/_1.FUJI.Napoleon.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="clsUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bitActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+      <xs:element minOccurs="0" name="intTipoUsuarioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intUsuarioID" type="xs:int" />
+      <xs:element minOccurs="0" name="vchApellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchProyectoID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsUsuario" nillable="true" type="tns:clsUsuario" />
+  <xs:complexType name="ArrayOfclsUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsUsuario" nillable="true" type="tns:clsUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsUsuario" nillable="true" type="tns:ArrayOfclsUsuario" />
+  <xs:complexType name="ArrayOfclsConfigSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsConfigSitio" nillable="true" type="tns:clsConfigSitio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsConfigSitio" nillable="true" type="tns:ArrayOfclsConfigSitio" />
+  <xs:complexType name="clsConfigSitio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bitSeleccionado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFechaSistema" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="in_tPuertoServer" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoCliente" type="xs:int" />
+      <xs:element minOccurs="0" name="vchAETitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchAETitleServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPServidor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchMaskCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserAdmin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchnombreSitio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsConfigSitio" nillable="true" type="tns:clsConfigSitio" />
+  <xs:complexType name="clsMensaje">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_lstEst" nillable="true" type="tns:ArrayOfclsEstudio" />
+      <xs:element minOccurs="0" name="valido" type="xs:boolean" />
+      <xs:element minOccurs="0" name="vchError" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchMensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsMensaje" nillable="true" type="tns:clsMensaje" />
+  <xs:complexType name="ArrayOfclsEstudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsEstudio" nillable="true" type="tns:clsEstudio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsEstudio" nillable="true" type="tns:ArrayOfclsEstudio" />
+  <xs:complexType name="clsEstudio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PatientID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="URGENTES" type="xs:int" />
+      <xs:element minOccurs="0" name="bitAtendido" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bitUrgente" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datAtendido" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="intDetEstudioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstatusID" type="xs:int" />
+      <xs:element minOccurs="0" name="intEstudioID" type="xs:int" />
+      <xs:element minOccurs="0" name="intModalidad" type="xs:int" />
+      <xs:element minOccurs="0" name="intModalidadID" type="xs:int" />
+      <xs:element minOccurs="0" name="intNumeroArchivo" type="xs:int" />
+      <xs:element minOccurs="0" name="intPrioridadID" type="xs:int" />
+      <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+      <xs:element minOccurs="0" name="intSecuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="intSizeFile" type="xs:int" />
+      <xs:element minOccurs="0" name="intTamanoTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="vchAccessionNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchEdad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchEstatusID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchModalidadID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNameFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPatientBirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPrioridad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchStudyInstanceUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchgenero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchusuarioSol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsEstudio" nillable="true" type="tns:clsEstudio" />
+  <xs:complexType name="ArrayOfclsDashboardService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsDashboardService" nillable="true" type="tns:clsDashboardService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsDashboardService" nillable="true" type="tns:ArrayOfclsDashboardService" />
+  <xs:complexType name="clsDashboardService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datFechaSCP" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFechaSCU" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="datFechaSync" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="intProyectoID" type="xs:int" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombreSitio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsDashboardService" nillable="true" type="tns:clsDashboardService" />
+  <xs:complexType name="ArrayOfclsModeloCatalogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsModeloCatalogo" nillable="true" type="tns:clsModeloCatalogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsModeloCatalogo" nillable="true" type="tns:ArrayOfclsModeloCatalogo" />
+  <xs:complexType name="clsModeloCatalogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="vchDescripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsModeloCatalogo" nillable="true" type="tns:clsModeloCatalogo" />
+  <xs:complexType name="clsPrioridadSucursal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="intModalidadID" type="xs:int" />
+      <xs:element minOccurs="0" name="intREL_SitioModID" type="xs:int" />
+      <xs:element minOccurs="0" name="intSecuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="vchModalidadID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchSitio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsPrioridadSucursal" nillable="true" type="tns:clsPrioridadSucursal" />
+  <xs:complexType name="ArrayOfclsEntidadTabla">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsEntidadTabla" nillable="true" type="tns:clsEntidadTabla" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsEntidadTabla" nillable="true" type="tns:ArrayOfclsEntidadTabla" />
+  <xs:complexType name="clsEntidadTabla">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Modalidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Numero_Archivos" type="xs:int" />
+      <xs:element minOccurs="0" name="Numero_Estudio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sucursal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tamaño_Archivos" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsEntidadTabla" nillable="true" type="tns:clsEntidadTabla" />
+  <xs:complexType name="ArrayOfclsGrafica">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clsGrafica" nillable="true" type="tns:clsGrafica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfclsGrafica" nillable="true" type="tns:ArrayOfclsGrafica" />
+  <xs:complexType name="clsGrafica">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_Valor" type="xs:int" />
+      <xs:element minOccurs="0" name="_hoverColor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsGrafica" nillable="true" type="tns:clsGrafica" />
+  <xs:complexType name="clsTop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PendientesEnvCSy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PendientesEnvSC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromedioArchivos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TamañoTotalArc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TotalEstEnviados" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsTop" nillable="true" type="tns:clsTop" />
+  <xs:complexType name="clsConfiguracion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bitActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="datFechaSistema" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id_Sitio" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoCliente" type="xs:int" />
+      <xs:element minOccurs="0" name="intPuertoServer" type="xs:int" />
+      <xs:element minOccurs="0" name="intTipoUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="vchAETitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchAETitleServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchClaveSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchIPServidor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchMaskCliente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombreSitio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchNombreUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchPathLocal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUserChanges" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vchUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsConfiguracion" nillable="true" type="tns:clsConfiguracion" />
+</xs:schema>

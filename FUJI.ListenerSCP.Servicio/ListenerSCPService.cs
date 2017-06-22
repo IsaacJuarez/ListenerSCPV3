@@ -3,6 +3,7 @@ using Dicom.Log;
 using Dicom.Network;
 using FUJI.ListenerSCP.Servicio.DataAccess;
 using FUJI.ListenerSCP.Servicio.DataAccessLocal;
+using FUJI.ListenerSCP.Servicio.Feed2Service;
 using System;
 using System.Configuration;
 using System.IO;
@@ -18,6 +19,7 @@ namespace FUJI.ListenerSCP.Servicio
         public static string vchPathRep = "";
         public static int id_Servicio = 0;
         public static string vchClaveSitio = "";
+        public static string Token = "";
 
         public static clsConfiguracion _conf;
         public ListenerSCPService()
@@ -26,7 +28,6 @@ namespace FUJI.ListenerSCP.Servicio
             cargarServicio();
         }
 
-        public static dbConfigEntities ConfigDA;
         public static NAPOLEONAUXEntities NapAuxDA;
 
 
@@ -57,7 +58,7 @@ namespace FUJI.ListenerSCP.Servicio
                     Log.EscribeLog("Existe un error al leer el path de destino: " + ePATHDES.Message);
                 }
 
-                DataAccess.tbl_ConfigSitio mdl = new DataAccess.tbl_ConfigSitio();
+                ClienteF2CResponse mdl = new ClienteF2CResponse();
                 if (File.Exists(path + "info.xml"))
                 {
                     _conf = XMLConfigurator.getXMLfile();
@@ -65,11 +66,14 @@ namespace FUJI.ListenerSCP.Servicio
                     AETitle = _conf.vchAETitle;
                     vchPathRep = _conf.vchPathLocal;
                     vchClaveSitio = _conf.vchClaveSitio;
+
+                    if (id_Servicio > 0 && vchClaveSitio != "")
+                        Token = Security.Encrypt(id_Servicio + "|" + vchClaveSitio);
                 }
                 Log.EscribeLog("Sitio: " + vchClaveSitio);
                 if (vchClaveSitio != "")
                 {
-                    mdl = ConfigDataAccess.getConeccion(vchClaveSitio);
+                    mdl = ConfigDataAccess.getConeccion(vchClaveSitio, id_Servicio);
                     if (mdl != null || _conf != null)
                     {
                         if (!(id_Servicio > 0))
@@ -79,18 +83,20 @@ namespace FUJI.ListenerSCP.Servicio
 
                         if (vchClaveSitio == "")
                         {
-                            vchClaveSitio = mdl.vchClaveSitio;
+                            vchClaveSitio = mdl.ConfigSitio.vchClaveSitio;
                         }
                         if (AETitle == "")
                         {
-                            AETitle = mdl.vchAETitle;
+                            AETitle = mdl.ConfigSitio.vchAETitle;
                         }
+                        if(Token != "")
+                            Token = Security.Encrypt(id_Servicio + "|" + vchClaveSitio);
                         Log.EscribeLog("Inicio de CargarServicio SCP");
                         // preload dictionary to prevent timeouts
                         var dict = DicomDictionary.Default;
                         int port = 0;
 
-                        Log.EscribeLog("Puerto: " + mdl.intPuertoCliente);
+                        Log.EscribeLog("Puerto: " + (mdl.ConfigSitio == null ? _conf.intPuertoCliente : mdl.ConfigSitio.intPuertoCliente) );
                         Log.EscribeLog("AETitle: " + AETitle);
                         // start DICOM server on port from command line argument or 11112
                         try
@@ -101,9 +107,9 @@ namespace FUJI.ListenerSCP.Servicio
                             }
                             else
                             {
-                                if (mdl.intPuertoCliente > 0)
+                                if (mdl.ConfigSitio.intPuertoCliente > 0)
                                 {
-                                    port = (int)mdl.intPuertoCliente;
+                                    port = (int)mdl.ConfigSitio.intPuertoCliente;
                                 }
                                 else
                                 {
@@ -122,6 +128,7 @@ namespace FUJI.ListenerSCP.Servicio
 
                             var server = DicomServer.Create<CStoreSCP>(port);
                             Log.EscribeLog($"Iniciando Servidor C-Store SCP en el  puerto {port}");
+
                             ConfigDataAccess.setService(id_Servicio, vchClaveSitio);
                             // end process
                             Console.WriteLine("Oprimir <return> para finalizar...");
@@ -351,7 +358,7 @@ namespace FUJI.ListenerSCP.Servicio
                 string edad = "";
                 try
                 {
-                    DateTime fechaNacimiento = Convert.ToDateTime(_Edad);
+                    //DateTime fechaNacimiento = Convert.ToDateTime(_Edad);
                     string[] format = { "yyyyMMdd" };
                     DateTime date;
                     int anios = 0;

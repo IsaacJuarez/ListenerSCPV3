@@ -300,7 +300,7 @@ namespace FUJI.ListenerSCP.Servicio
                             mdlEstudio.datFecha = DateTime.Now;
                             mdlEstudio.vchgenero = genero;
                             mdlEstudio.vchEdad = Edad == "" && FechaNac != "" ? getEdad(FechaNac) : Edad;
-                            mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber(mdlEstudio.id_Sitio, mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
+                            mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber((int)mdlEstudio.id_Sitio, (int)mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
 
                             //Obtener DET
 
@@ -399,7 +399,7 @@ namespace FUJI.ListenerSCP.Servicio
                 return PatientID;
             }
 
-            private string getAccNumber(object id_Sitio, object intModalidadID, string patientID)
+            private string getAccNumber(int id_Sitio, int intModalidadID, string patientID)
             {
                 string AccNum = "";
                 string accAux = "";
@@ -408,7 +408,7 @@ namespace FUJI.ListenerSCP.Servicio
                     int consec = 0;
                     try
                     {
-                        accAux = NapoleonAUXDataAccess.getAccNumber(patientID.Trim(), id_Servicio);
+                        accAux = NapoleonAUXDataAccess.getAccNumber(patientID.Trim(), id_Sitio);
                         if (accAux == "")
                             consec = NapoleonAUXDataAccess.getConsecutivo();
                     }

@@ -74,6 +74,8 @@
           <Property Name="datFecha" Type="datetime" />
           <Property Name="vchgenero" Type="varchar" MaxLength="200" />
           <Property Name="vchEdad" Type="varchar" MaxLength="200" />
+          <Property Name="StudyID" Type="varchar" MaxLength="100" />
+          <Property Name="StudyDescription" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_CAT_Estudio_DET_Estudio">
           <End Role="tbl_CAT_EstatusAUX" Type="Self.tbl_CAT_EstatusAUX" Multiplicity="0..1" />
@@ -250,6 +252,8 @@
           <NavigationProperty Name="tbl_DET_EstudioAUX" Relationship="NAPOLEONAUXModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_DET_EstudioAUX" />
           <Property Name="vchgenero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="vchEdad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StudyID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudyDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_CAT_Estudio_DET_Estudio">
           <End Type="NAPOLEONAUXModel.tbl_CAT_EstatusAUX" Role="tbl_CAT_EstatusAUX" Multiplicity="0..1" />
@@ -365,6 +369,8 @@
           <EntitySetMapping Name="tbl_MST_EstudioAUX">
             <EntityTypeMapping TypeName="NAPOLEONAUXModel.tbl_MST_EstudioAUX">
               <MappingFragment StoreEntitySet="tbl_MST_EstudioAUX">
+                <ScalarProperty Name="StudyDescription" ColumnName="StudyDescription" />
+                <ScalarProperty Name="StudyID" ColumnName="StudyID" />
                 <ScalarProperty Name="vchEdad" ColumnName="vchEdad" />
                 <ScalarProperty Name="vchgenero" ColumnName="vchgenero" />
                 <ScalarProperty Name="datFecha" ColumnName="datFecha" />

@@ -268,6 +268,8 @@ namespace FUJI.ListenerSCP.Servicio
                         string genero = "";
                         string instUid = "";
                         string FechaNac = "";
+                        string UniversalServiceID = "";
+                        string studyDescription = "";
                         try { studyUid = request.Dataset.Contains(DicomTag.StudyInstanceUID) ? request.Dataset.Get<string>(DicomTag.StudyInstanceUID) : ""; } catch (Exception eUI) { studyUid = ""; }
                         try { AccNum = request.Dataset.Contains(DicomTag.AccessionNumber) ? request.Dataset.Get<string>(DicomTag.AccessionNumber) : ""; } catch (Exception eUI) { AccNum = ""; }
                         try { Modality = request.Dataset.Contains(DicomTag.Modality) ? request.Dataset.Get<string>(DicomTag.Modality) : ""; } catch (Exception eUI) { Modality = ""; }
@@ -277,6 +279,8 @@ namespace FUJI.ListenerSCP.Servicio
                         try { patienName = request.Dataset.Contains(DicomTag.PatientName) ? request.Dataset.Get<string>(DicomTag.PatientName) : ""; } catch (Exception eUI) { patienName = ""; }
                         try { genero = request.Dataset.Contains(DicomTag.PatientSex) ? request.Dataset.Get<string>(DicomTag.PatientSex) : ""; } catch (Exception eUI) { genero = ""; }
                         try { instUid = request.SOPInstanceUID.UID; } catch (Exception eUI) { instUid = ""; }
+                        try { UniversalServiceID = request.Dataset.Contains(DicomTag.StudyID) ? request.Dataset.Get<string>(DicomTag.StudyID) : ""; } catch (Exception eUI) { UniversalServiceID = ""; }
+                        try { studyDescription = request.Dataset.Contains(DicomTag.StudyDescription) ? request.Dataset.Get<string>(DicomTag.StudyDescription) : ""; } catch (Exception eUI) { studyDescription = ""; }
 
                         Console.WriteLine(instUid.ToString());
                         Log.EscribeLog("Leyendo: " + instUid.ToString());
@@ -301,6 +305,8 @@ namespace FUJI.ListenerSCP.Servicio
                             mdlEstudio.vchgenero = genero;
                             mdlEstudio.vchEdad = Edad == "" && FechaNac != "" ? getEdad(FechaNac) : Edad;
                             mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber((int)mdlEstudio.id_Sitio, (int)mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
+                            mdlEstudio.StudyID = UniversalServiceID;
+                            mdlEstudio.StudyDescription = studyDescription;
 
                             //Obtener DET
 

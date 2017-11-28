@@ -31,6 +31,8 @@ namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
         public Nullable<System.DateTime> datFecha { get; set; }
         public string vchgenero { get; set; }
         public string vchEdad { get; set; }
+        public string StudyID { get; set; }
+        public string StudyDescription { get; set; }
     
         public virtual tbl_CAT_ModalidadAUX tbl_CAT_ModalidadAUX { get; set; }
         public virtual tbl_ConfigSitioAUX tbl_ConfigSitioAUX { get; set; }

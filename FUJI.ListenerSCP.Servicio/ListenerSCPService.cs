@@ -475,10 +475,12 @@ namespace FUJI.ListenerSCP.Servicio
 
         protected override void OnStart(string[] args)
         {
+
         }
 
         protected override void OnStop()
         {
+
         }
     }
 }

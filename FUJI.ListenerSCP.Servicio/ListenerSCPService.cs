@@ -305,8 +305,8 @@ namespace FUJI.ListenerSCP.Servicio
                             mdlEstudio.vchgenero = genero;
                             mdlEstudio.vchEdad = Edad == "" && FechaNac != "" ? getEdad(FechaNac) : Edad;
                             mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber((int)mdlEstudio.id_Sitio, (int)mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
-                            mdlEstudio.StudyID = UniversalServiceID;
-                            mdlEstudio.StudyDescription = studyDescription;
+                            //mdlEstudio.StudyID = UniversalServiceID;
+                            //mdlEstudio.StudyDescription = studyDescription;
 
                             //Obtener DET
 

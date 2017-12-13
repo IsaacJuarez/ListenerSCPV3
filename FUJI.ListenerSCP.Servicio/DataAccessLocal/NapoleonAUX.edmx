@@ -69,13 +69,11 @@
           <Property Name="vchPatientBirthDate" Type="varchar" MaxLength="200" />
           <Property Name="PatientID" Type="varchar" MaxLength="200" />
           <Property Name="PatientName" Type="varchar" MaxLength="200" />
+          <Property Name="vchgenero" Type="varchar" MaxLength="200" />
           <Property Name="intNumeroArchivo" Type="int" />
           <Property Name="intTamanoTotal" Type="int" />
-          <Property Name="datFecha" Type="datetime" />
-          <Property Name="vchgenero" Type="varchar" MaxLength="200" />
           <Property Name="vchEdad" Type="varchar" MaxLength="200" />
-          <Property Name="StudyID" Type="varchar" MaxLength="100" />
-          <Property Name="StudyDescription" Type="varchar" MaxLength="200" />
+          <Property Name="datFecha" Type="datetime" />
         </EntityType>
         <Association Name="FK_CAT_Estudio_DET_Estudio">
           <End Role="tbl_CAT_EstatusAUX" Type="Self.tbl_CAT_EstatusAUX" Multiplicity="0..1" />
@@ -157,11 +155,11 @@
           <EntitySet Name="tbl_CAT_ModalidadAUX" EntityType="NAPOLEONAUXModel.tbl_CAT_ModalidadAUX" />
           <EntitySet Name="tbl_ConfigSitioAUX" EntityType="NAPOLEONAUXModel.tbl_ConfigSitioAUX" />
           <EntitySet Name="tbl_DET_EstudioAUX" EntityType="NAPOLEONAUXModel.tbl_DET_EstudioAUX" />
-          <EntitySet Name="tbl_MST_EstudioAUX" EntityType="NAPOLEONAUXModel.tbl_MST_EstudioAUX" />
           <AssociationSet Name="FK_CAT_Estudio_DET_Estudio" Association="NAPOLEONAUXModel.FK_CAT_Estudio_DET_Estudio">
             <End Role="tbl_CAT_EstatusAUX" EntitySet="tbl_CAT_EstatusAUX" />
             <End Role="tbl_DET_EstudioAUX" EntitySet="tbl_DET_EstudioAUX" />
           </AssociationSet>
+          <EntitySet Name="tbl_MST_EstudioAUX" EntityType="NAPOLEONAUXModel.tbl_MST_EstudioAUX" />
           <AssociationSet Name="FK_CAT_Modalidad_MST_Estudio" Association="NAPOLEONAUXModel.FK_CAT_Modalidad_MST_Estudio">
             <End Role="tbl_CAT_ModalidadAUX" EntitySet="tbl_CAT_ModalidadAUX" />
             <End Role="tbl_MST_EstudioAUX" EntitySet="tbl_MST_EstudioAUX" />
@@ -233,28 +231,6 @@
           <NavigationProperty Name="tbl_CAT_EstatusAUX" Relationship="NAPOLEONAUXModel.FK_CAT_Estudio_DET_Estudio" FromRole="tbl_DET_EstudioAUX" ToRole="tbl_CAT_EstatusAUX" />
           <NavigationProperty Name="tbl_MST_EstudioAUX" Relationship="NAPOLEONAUXModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_DET_EstudioAUX" ToRole="tbl_MST_EstudioAUX" />
         </EntityType>
-        <EntityType Name="tbl_MST_EstudioAUX">
-          <Key>
-            <PropertyRef Name="intEstudioID" />
-          </Key>
-          <Property Name="intEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Sitio" Type="Int32" />
-          <Property Name="intModalidadID" Type="Int32" />
-          <Property Name="vchAccessionNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="vchPatientBirthDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PatientID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PatientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="intNumeroArchivo" Type="Int32" />
-          <Property Name="intTamanoTotal" Type="Int32" />
-          <Property Name="datFecha" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbl_CAT_ModalidadAUX" Relationship="NAPOLEONAUXModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_CAT_ModalidadAUX" />
-          <NavigationProperty Name="tbl_ConfigSitioAUX" Relationship="NAPOLEONAUXModel.FK_ConfigSitio_MST_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_ConfigSitioAUX" />
-          <NavigationProperty Name="tbl_DET_EstudioAUX" Relationship="NAPOLEONAUXModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_DET_EstudioAUX" />
-          <Property Name="vchgenero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="vchEdad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="StudyID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StudyDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="FK_CAT_Estudio_DET_Estudio">
           <End Type="NAPOLEONAUXModel.tbl_CAT_EstatusAUX" Role="tbl_CAT_EstatusAUX" Multiplicity="0..1" />
           <End Type="NAPOLEONAUXModel.tbl_DET_EstudioAUX" Role="tbl_DET_EstudioAUX" Multiplicity="*" />
@@ -267,6 +243,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbl_MST_EstudioAUX">
+          <Key>
+            <PropertyRef Name="intEstudioID" />
+          </Key>
+          <Property Name="intEstudioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Sitio" Type="Int32" />
+          <Property Name="intModalidadID" Type="Int32" />
+          <Property Name="vchAccessionNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="vchPatientBirthDate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PatientID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PatientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="vchgenero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="intNumeroArchivo" Type="Int32" />
+          <Property Name="intTamanoTotal" Type="Int32" />
+          <Property Name="vchEdad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datFecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_CAT_ModalidadAUX" Relationship="NAPOLEONAUXModel.FK_CAT_Modalidad_MST_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_CAT_ModalidadAUX" />
+          <NavigationProperty Name="tbl_ConfigSitioAUX" Relationship="NAPOLEONAUXModel.FK_ConfigSitio_MST_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_ConfigSitioAUX" />
+          <NavigationProperty Name="tbl_DET_EstudioAUX" Relationship="NAPOLEONAUXModel.FK_MST_Estudio_DET_Estudio" FromRole="tbl_MST_EstudioAUX" ToRole="tbl_DET_EstudioAUX" />
+        </EntityType>
         <Association Name="FK_CAT_Modalidad_MST_Estudio">
           <End Type="NAPOLEONAUXModel.tbl_CAT_ModalidadAUX" Role="tbl_CAT_ModalidadAUX" Multiplicity="0..1" />
           <End Type="NAPOLEONAUXModel.tbl_MST_EstudioAUX" Role="tbl_MST_EstudioAUX" Multiplicity="*" />
@@ -369,13 +365,11 @@
           <EntitySetMapping Name="tbl_MST_EstudioAUX">
             <EntityTypeMapping TypeName="NAPOLEONAUXModel.tbl_MST_EstudioAUX">
               <MappingFragment StoreEntitySet="tbl_MST_EstudioAUX">
-                <ScalarProperty Name="StudyDescription" ColumnName="StudyDescription" />
-                <ScalarProperty Name="StudyID" ColumnName="StudyID" />
-                <ScalarProperty Name="vchEdad" ColumnName="vchEdad" />
-                <ScalarProperty Name="vchgenero" ColumnName="vchgenero" />
                 <ScalarProperty Name="datFecha" ColumnName="datFecha" />
+                <ScalarProperty Name="vchEdad" ColumnName="vchEdad" />
                 <ScalarProperty Name="intTamanoTotal" ColumnName="intTamanoTotal" />
                 <ScalarProperty Name="intNumeroArchivo" ColumnName="intNumeroArchivo" />
+                <ScalarProperty Name="vchgenero" ColumnName="vchgenero" />
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="vchPatientBirthDate" ColumnName="vchPatientBirthDate" />

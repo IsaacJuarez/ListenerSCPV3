@@ -67,7 +67,7 @@ namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
             }
             catch(Exception egAN)
             {
-                Log.EscribeLog("Existe un error en getAccessionNumber: " + egAN.Message);
+                Log.EscribeLog("Existe un error en getConsecutivo: " + egAN.Message);
             }
             return vchAccessionNumber;
         }
@@ -80,7 +80,7 @@ namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
             {
                 using (NapAuxDA = new NAPOLEONAUXEntities())
                 {
-                    if (NapAuxDA.tbl_MST_EstudioAUX.Any(x => x.PatientID == PatientID))
+                    if (NapAuxDA.tbl_MST_EstudioAUX.Any(x => x.PatientID == PatientID && x.id_Sitio == id_Sitio))
                     {
                         vchAccessionNumber = NapAuxDA.tbl_MST_EstudioAUX.First(x => x.PatientID.ToUpper() == PatientID.ToUpper() && x.id_Sitio == id_Sitio).vchAccessionNumber;
                     }
@@ -88,7 +88,7 @@ namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
             }
             catch (Exception egAN)
             {
-                Log.EscribeLog("Existe un error en getAccessionNumber: " + egAN.Message);
+                Log.EscribeLog("Existe un error en getAccNumber: " + egAN.Message);
             }
             return vchAccessionNumber;
         }
@@ -112,7 +112,7 @@ namespace FUJI.ListenerSCP.Servicio.DataAccessLocal
             }
             catch (Exception egAN)
             {
-                Log.EscribeLog("Existe un error en getAccessionNumber: " + egAN.Message);
+                Log.EscribeLog("Existe un error en getPatientID: " + egAN.Message);
             }
             return vchName;
         }

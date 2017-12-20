@@ -295,16 +295,43 @@ namespace FUJI.ListenerSCP.Servicio
                         bool valido = false;
                         try
                         {
+                            if (PatientID == "")
+                            {
+                                string idPac = Guid.NewGuid().ToString();
+                                PatientID = vchClaveSitio + idPac.Substring(1, 5).Replace("-", "");
+                            }
+                            else
+                            {
+                                PatientID = vchClaveSitio + PatientID;
+                            }
                             //Obtener MST
                             mdlEstudio.id_Sitio = id_Servicio;
                             mdlEstudio.intModalidadID = getModalidad(Modality);
-                            mdlEstudio.PatientID = PatientID.Trim() == "" ? getPatientID(mdlEstudio.id_Sitio): PatientID;
+                            mdlEstudio.PatientID = PatientID.Trim() == "" ? getPatientID(mdlEstudio.id_Sitio) : PatientID;
                             mdlEstudio.vchPatientBirthDate = FechaNac;
                             mdlEstudio.PatientName = patienName.Replace("^^", " ").Replace("^^^", " ").Replace("^", " ");
                             mdlEstudio.datFecha = DateTime.Now;
                             mdlEstudio.vchgenero = genero;
                             mdlEstudio.vchEdad = Edad == "" && FechaNac != "" ? getEdad(FechaNac) : Edad;
-                            mdlEstudio.vchAccessionNumber = AccNum.Trim() == "" ? getAccNumber((int)mdlEstudio.id_Sitio, (int)mdlEstudio.intModalidadID, mdlEstudio.PatientID) : AccNum;
+                            string ValidarAcc = AccNum.Trim();
+                            string anteriorAccNum = getAccNumber((int)mdlEstudio.id_Sitio, (int)mdlEstudio.intModalidadID, mdlEstudio.PatientID);
+                            if (anteriorAccNum == "")
+                            {
+                                if (ValidarAcc == "")
+                                {
+                                    string guid = Guid.NewGuid().ToString();
+                                    ValidarAcc = vchClaveSitio + guid.Substring(0, 5).Replace("-", "");
+                                }
+                                else
+                                {
+                                    ValidarAcc = vchClaveSitio + ValidarAcc;
+                                }
+                            }
+                            else
+                            {
+                                ValidarAcc = anteriorAccNum;
+                            }
+                            mdlEstudio.vchAccessionNumber = ValidarAcc.ToUpper();
                             //mdlEstudio.StudyID = UniversalServiceID;
                             //mdlEstudio.StudyDescription = studyDescription;
 
@@ -424,7 +451,7 @@ namespace FUJI.ListenerSCP.Servicio
                     }
                     if (accAux == "")
                     {
-                        AccNum = id_Sitio.ToString() + intModalidadID.ToString() + (patientID.ToString().Trim() != "" ? patientID.ToString() : "XXXXX") + consec;
+                        AccNum = vchClaveSitio.ToString() + intModalidadID.ToString() + (patientID.ToString().Replace(vchClaveSitio, "").Trim() != "" ? patientID.ToString().Replace(vchClaveSitio, "") : "XXXXX") + consec;
                     }
                     else
                     {

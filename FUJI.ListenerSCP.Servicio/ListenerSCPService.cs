@@ -267,6 +267,7 @@ namespace FUJI.ListenerSCP.Servicio
                         string patienName = "";
                         string genero = "";
                         string instUid = "";
+                        string SOPClassUid = "";
                         string FechaNac = "";
                         string UniversalServiceID = "";
                         string studyDescription = "";
@@ -278,12 +279,26 @@ namespace FUJI.ListenerSCP.Servicio
                         try { PatientID = request.Dataset.Contains(DicomTag.PatientID) ? request.Dataset.Get<string>(DicomTag.PatientID) : ""; } catch (Exception eUI) { PatientID = ""; }
                         try { patienName = request.Dataset.Contains(DicomTag.PatientName) ? request.Dataset.Get<string>(DicomTag.PatientName) : ""; } catch (Exception eUI) { patienName = ""; }
                         try { genero = request.Dataset.Contains(DicomTag.PatientSex) ? request.Dataset.Get<string>(DicomTag.PatientSex) : ""; } catch (Exception eUI) { genero = ""; }
-                        try { instUid = request.SOPInstanceUID.UID; } catch (Exception eUI) { instUid = ""; }
+                        try
+                        {
+                            instUid = request.SOPInstanceUID.UID;
+                        }
+                        catch (Exception eUI)
+                        {
+                            instUid = "";
+                            int i = BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0);
+                            if (i < 0)
+                                i = i * (-1);
+                            instUid = i.ToString();
+                            Log.EscribeLog("No tiene SOPInstanceUID: ");
+                        }
+                        try { SOPClassUid = request.SOPClassUID.UID; } catch (Exception eUI) { SOPClassUid = ""; }
                         try { UniversalServiceID = request.Dataset.Contains(DicomTag.StudyID) ? request.Dataset.Get<string>(DicomTag.StudyID) : ""; } catch (Exception eUI) { UniversalServiceID = ""; }
                         try { studyDescription = request.Dataset.Contains(DicomTag.StudyDescription) ? request.Dataset.Get<string>(DicomTag.StudyDescription) : ""; } catch (Exception eUI) { studyDescription = ""; }
 
                         Console.WriteLine(instUid.ToString());
                         Log.EscribeLog("Leyendo: " + instUid.ToString());
+                        Log.EscribeLog("SOPClassUID: " + instUid.ToString());
                         var path = Path.GetFullPath(vchPathRep);
                         path = Path.Combine(path, studyUid);
 
@@ -331,7 +346,11 @@ namespace FUJI.ListenerSCP.Servicio
                             {
                                 ValidarAcc = anteriorAccNum;
                             }
-                            mdlEstudio.vchAccessionNumber = ValidarAcc.ToUpper();
+                            if (ValidarAcc.ToUpper().Length > 16)
+                                ValidarAcc = ValidarAcc.ToUpper().Substring(0, 16);
+                            else
+                                ValidarAcc = ValidarAcc.ToUpper();
+                            mdlEstudio.vchAccessionNumber = ValidarAcc;
                             //mdlEstudio.StudyID = UniversalServiceID;
                             //mdlEstudio.StudyDescription = studyDescription;
 
@@ -356,6 +375,11 @@ namespace FUJI.ListenerSCP.Servicio
                             request.Dataset.Remove(DicomTag.PatientID);
                             request.Dataset.Remove(DicomTag.AccessionNumber);
                             request.Dataset.Remove(DicomTag.PatientAge);
+                            if (SOPClassUid == "")
+                            {
+                                request.Dataset.Remove(DicomTag.SOPClassUID);
+                                request.Dataset.Add(new DicomCodeString(DicomTag.SOPClassUID, instUid));
+                            }
                             request.Dataset.Add(new DicomCodeString(DicomTag.AccessionNumber, mdlEstudio.vchAccessionNumber));
                             request.Dataset.Add(new DicomCodeString(DicomTag.PatientID, mdlEstudio.PatientID));
                             request.Dataset.Add(new DicomCodeString(DicomTag.PatientAge, mdlEstudio.PatientID));
